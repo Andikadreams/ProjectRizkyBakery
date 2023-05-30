@@ -15,6 +15,7 @@ class Produk extends Model
     [
         'kode_produk', 
         'nama_produk', 
+        'foto_produk',
         'id_kategori', 
         'harga', 
         'jumlah'

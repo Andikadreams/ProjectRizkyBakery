@@ -19,7 +19,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('img/login_image.png')}}">
+    <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet">
+
 
 </head>
 
@@ -75,7 +76,7 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="{{ route('register') }}">Create an Account!</a>
+                                        <a class="small" href="{{ route('register.simpan') }}">Create an Account!</a>
                                     </div>
                                     <div class="flex items-center justify-end mt-4">
                                         <a href="{{ url('auth/google') }}">

@@ -8,7 +8,7 @@
 
         <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
 
-        @if(Auth::guest())
+        @if(Auth::user())
             <li class="nav-item">
                 <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-starters">
                     <h4>Starters</h4>
@@ -32,6 +32,7 @@
                 </a>
             </li>
             <!-- End tab nav item -->
+            @else
             @endif
         </ul>
         <div class="tab-content" data-aos="fade-up" data-aos-delay="300">

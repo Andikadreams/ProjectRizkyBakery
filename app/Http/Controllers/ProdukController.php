@@ -17,7 +17,7 @@ class ProdukController extends Controller
     {
         $produk = Produk::get();
 
-		return view('produk.index', ['data' => $produk]);
+		return view('layouts.admin.produk.index', ['data' => $produk]);
     }
 
     /**
@@ -28,7 +28,7 @@ class ProdukController extends Controller
     public function create()
     {
         $kategori = Kategori::get();
-		return view('produk.form', ['kategori' => $kategori]);
+		return view('layouts.admin.produk.form', ['kategori' => $kategori]);
     }
 
     /**
@@ -39,9 +39,14 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
+        $foto = '';
+        if ($request->file('image')) {
+            $foto = $request->file('image')->store('images', 'public');
+        }
         $data = [
 			'kode_produk' => $request->kode_produk,
 			'nama_produk' => $request->nama_produk,
+            'foto_produk' => $foto,
 			'id_kategori' => $request->id_kategori,
 			'harga' => $request->harga,
 			'jumlah' => $request->jumlah,
@@ -71,9 +76,9 @@ class ProdukController extends Controller
      */
     public function edit($id)
     {
-        $produk = Produk::find($id)->first();
+        $produk = Produk::find($id);
 		$kategori = Kategori::get();
-		return view('produk.form', ['produk' => $produk, 'kategori' => $kategori]);
+		return view('layouts.admin.produk.edit', ['produk' => $produk, 'kategori' => $kategori]);
     }
 
     /**
@@ -85,9 +90,15 @@ class ProdukController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $produk = Produk::find($id);
+        $foto = '';
+        if ($request->file('image')) {
+            $foto = $request->file('image')->store('image', 'public');
+        }
         $data = [
 			'kode_produk' => $request->kode_produk,
 			'nama_produk' => $request->nama_produk,
+            'foto_produk' => $foto,
 			'id_kategori' => $request->id_kategori,
 			'harga' => $request->harga,
 			'jumlah' => $request->jumlah,

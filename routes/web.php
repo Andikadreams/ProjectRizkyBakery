@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginWithGoogleController;
 use Illuminate\Support\Facades\Auth;
@@ -39,20 +42,20 @@ Route::group(['middleware' => ['auth','level:admin']], function(){
     })->name('dashboard');  
     Route::controller(KategoriController::class)->prefix('kategori')->group(function () {
 		Route::get('', 'index')->name('kategori');
-		Route::get('tambah', 'tambah')->name('kategori.tambah');
-		Route::post('tambah', 'simpan')->name('kategori.tambah.simpan');
+		Route::get('tambah', 'create')->name('kategori.create');
+		Route::post('tambah', 'store')->name('kategori.create.store');
 		Route::get('edit/{id}', 'edit')->name('kategori.edit');
-		Route::post('edit/{id}', 'update')->name('kategori.tambah.update');
-		Route::get('hapus/{id}', 'hapus')->name('kategori.hapus');
+		Route::post('edit/{id}', 'update')->name('kategori.create.update');
+		Route::get('hapus/{id}', 'destroy')->name('kategori.destroy');
 	});
 
-    Route::controller(BarangController::class)->prefix('barang')->group(function () {
-		Route::get('', 'index')->name('barang');
-		Route::get('tambah', 'tambah')->name('barang.tambah');
-		Route::post('tambah', 'simpan')->name('barang.tambah.simpan');
-		Route::get('edit/{id}', 'edit')->name('barang.edit');
-		Route::post('edit/{id}', 'update')->name('barang.tambah.update');
-		Route::get('hapus/{id}', 'hapus')->name('barang.hapus');
+    Route::controller(ProdukController::class)->prefix('produk')->group(function () {
+		Route::get('', 'index')->name('produk');
+		Route::get('tambah', 'create')->name('produk.create');
+		Route::post('tambah', 'store')->name('produk.create.store');
+		Route::get('edit/{id}', 'edit')->name('produk.edit');
+		Route::post('edit/{id}', 'update')->name('produk.create.update');
+		Route::get('hapus/{id}', 'destroy')->name('produk.destroy');
 	});
 
 });
@@ -72,3 +75,6 @@ Route::group(['middleware' => ['auth','level:pelanggan']], function(){
 Route::get('auth/google', [LoginWithGoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [LoginWithGoogleController::class, 'handleGoogleCallback']); 
 
+Route::controller(RegisterController::class)->group(function () {
+Route::post('register', 'registerSimpan')->name('register.simpan');
+});

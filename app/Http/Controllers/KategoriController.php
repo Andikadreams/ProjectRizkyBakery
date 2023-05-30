@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KategoriController extends Controller
 {
@@ -15,7 +16,7 @@ class KategoriController extends Controller
     public function index()
     {
         $kategori = Kategori::get();
-		return view('kategori/index', ['kategori' => $kategori]);
+		return view('layouts.admin.kategori.index', ['kategori' => $kategori]);
     }
 
     /**
@@ -25,7 +26,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        return view('kategori.form');
+        return view('layouts.admin.kategori.form');
     }
 
     /**
@@ -60,7 +61,7 @@ class KategoriController extends Controller
     public function edit($id)
     {
         $kategori = Kategori::find($id)->first();
-		return view('kategori.form', ['kategori' => $kategori]);
+		return view('layouts.admin.kategori.form', ['kategori' => $kategori]);
     }
 
     /**
@@ -84,7 +85,15 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        Kategori::find($id)->delete();
-		return redirect()->route('kategori');
+			$kategori = DB::table('kategori')->find($id);
+			$produk = DB::table('produk')->where('id_kategori', $id)->get();
+			if($produk->count() == 0) {
+			$kategori = DB::table('kategori')->where('id', $id)->delete();
+			} else{
+				DB::table('produk')->where('id_kategori', $id)->update(['id_kategori' => 1]);
+				$kategori = DB::table('kategori')->where('id', $id)->delete();
+			// return response()->json(['message' => 'Maaf Kategori ini terdapat dalam tabel produk']);
+			return redirect()->route('kategori');
+		}
     }
 }

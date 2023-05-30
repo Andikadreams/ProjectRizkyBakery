@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -70,4 +71,22 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function registerSimpan(Request $request)
+	{
+		Validator::make($request->all(), [
+			'name' => 'required',
+			'email' => 'required|email',
+			'password' => 'required|confirmed'
+		])->validate();
+
+		User::create([
+			'name' => $request->name,
+			'email' => $request->email,
+			'password' => Hash::make($request->password),
+			'level' => 'pelanggan'
+		]);
+
+		return redirect()->route('login');
+	}
 }
