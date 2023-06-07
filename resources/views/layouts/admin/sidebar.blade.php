@@ -19,7 +19,7 @@
   </li>
 
   <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="{{ route('user') }}">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Manajemen User</span></a>
   </li>

@@ -31,7 +31,7 @@ class LoginWithGoogleController extends Controller
                     'password' => encrypt('123456dummy'),
                 ]);
                 Auth::login($newUser);
-                return redirect()->intended('home');
+                return redirect()->intended('PelangganHome');
             }
         } catch(Exception $e){
             dd($e->getMessage());

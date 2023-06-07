@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -63,14 +65,23 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
-    }
+    // protected function create(array $data)
+    // {
+    //     return User::create([
+    //         'name' => $data['name'],
+    //         'email' => $data['email'],
+    //         'password' => Hash::make($data['password']),
+    //     ]);
+    // }
+
+    public function register()
+	{
+		return view('auth/register');
+	}
+    public function login()
+	{
+		return view('auth/login');
+	}
 
     public function registerSimpan(Request $request)
 	{
@@ -87,6 +98,24 @@ class RegisterController extends Controller
 			'level' => 'pelanggan'
 		]);
 
-		return redirect()->route('login');
+		return redirect()->route('login')->with('Sukses','Sukses melakukan registrasi. Silahkan login');
 	}
+
+    // public function loginAksi(Request $request)
+	// {
+	// 	Validator::make($request->all(), [
+	// 		'email' => 'required|email',
+	// 		'password' => 'required'
+	// 	])->validate();
+
+	// 	if (!Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
+	// 		throw ValidationException::withMessages([
+	// 			'email' => trans('auth.failed')
+	// 		]);
+	// 	}
+
+	// 	$request->session()->regenerate();
+
+	// 	return redirect()->route('home');
+	// }
 }

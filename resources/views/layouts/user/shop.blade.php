@@ -64,7 +64,7 @@
                                 @foreach (session('cart') as $id => $details)
                                     <div class="row cart-detail">
                                         <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
-                                            <img style="height: 50px; object-fit: cover; width: 100%; object-position:center;"
+                                            <img style="height: 50px; object-fit: cover; width: 100%; object-position:;"
                                                 src="{{ $details['photo'] }}" />
                                         </div>
                                         <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">

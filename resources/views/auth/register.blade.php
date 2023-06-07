@@ -39,10 +39,10 @@
                             <form action="{{ route('register.simpan') }}" method="POST" class="user">
                                 @csrf
                                 <div class="form-group">
-                                    <input name="nama" type="text"
-                                        class="form-control form-control-user @error('nama')is-invalid @enderror"
+                                    <input name="name" type="text"
+                                        class="form-control form-control-user @error('name')is-invalid @enderror"
                                         id="exampleInputName" placeholder="Name">
-                                    @error('nama')
+                                    @error('name')
                                     <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
