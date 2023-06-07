@@ -20,6 +20,56 @@ class ProdukController extends Controller
 		return view('layouts.admin.produk.index', ['data' => $produk]);
     }
 
+    public function indexShop(){
+        $shop = Produk::get();
+        return view('layouts.user.shop', compact('shop'));
+    }
+
+    public function cart(){
+        return view('layouts.user.cart');
+    }
+
+    public function addToCart($id){
+        $produk = Produk::findOrFail($id);
+        $cart = session()->get('cart', []);
+        if(isset($cart[$id])){
+            $cart[$id]['quantity']++;
+        }else{
+            $cart[$id] = [
+                "product_name"=>$produk->nama_produk,
+                "photo"=>$produk->foto_produk,
+                "price"=>$produk->harga,
+                "quantity"=> 1
+            ];
+        }
+        session()->put('cart',$cart);
+        return redirect()->back()->with('success', 'Product add to cart successfully');
+    }
+
+    public function updateCart(Request $request)
+    {
+        if($request->id && $request->quantity){
+            $cart = session()->get('cart');
+            $cart[$request->id]["quantity"] = $request->quantity;
+            session()->put('cart', $cart);
+            session()->flash('success', 'Cart successfully updated!');
+        }
+    }
+
+
+    
+    public function remove(Request $request)
+    {
+        if($request->id) {
+            $cart = session()->get('cart');
+            if(isset($cart[$request->id])) {
+                unset($cart[$request->id]);
+                session()->put('cart', $cart);
+            }
+            session()->flash('success', 'Product successfully removed!');
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *

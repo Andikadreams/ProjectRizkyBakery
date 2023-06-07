@@ -80,7 +80,12 @@ Route::group(['middleware' => ['auth','level:pelanggan']], function(){
     // Route::get('/home', function(){
     //     return view ('index_pelanggan');
     // })->name('home');
-	Route::get('/home', [App\Http\Controllers\HomeController::class, 'pelangganHome'])->name('home');
+	Route::get('/home', [HomeController::class, 'pelangganHome'])->name('home');
+	Route::get('/shop',[ProdukController::class, 'indexShop'])->name('shop');
+	Route::get('/add-to-cart/{id}',[ProdukController::class, 'addToCart'])->name('add_to_cart');
+	Route::get('cart', [ProdukController::class, 'cart'])->name('cart');
+	Route::patch('update-cart', [ProdukController::class, 'updateCart'])->name('update_cart');
+	Route::delete('remove-from-cart', [ProdukController::class, 'remove'])->name('remove_from_cart');
 
 	
 });
@@ -88,17 +93,6 @@ Route::group(['middleware' => ['auth','level:pelanggan']], function(){
 Route::get('auth/google', [LoginWithGoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [LoginWithGoogleController::class, 'handleGoogleCallback']); 
 
-// Route::controller(AuthController::class)->group(function () {
-// 	Route::get('register', 'register')->name('register');
-// 	Route::post('register', 'registerSimpan')->name('register.simpan');
-
-// 	Route::get('login', 'login')->name('login');
-// 	Route::post('login', 'loginAksi')->name('login.aksi');
-
-// 	Route::get('logout', 'logout')->middleware('auth')->name('logout');
-// });
-
-Route::get('register',[AuthController::class, 'register'])->name('register');
-Route::post('register/simpan',[AuthController::class, 'registerSimpan'])->name('register.simpan');
-
-
+Route::controller(RegisterController::class)->group(function () {
+Route::post('register', 'registerSimpan')->name('register.simpan');
+});
