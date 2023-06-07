@@ -78,3 +78,9 @@ Route::get('auth/google/callback', [LoginWithGoogleController::class, 'handleGoo
 Route::controller(RegisterController::class)->group(function () {
 Route::post('register', 'registerSimpan')->name('register.simpan');
 });
+
+Route::get('/shop',[ProdukController::class, 'indexShop'])->name('shop');
+Route::get('/add-to-cart/{id}',[ProdukController::class, 'addToCart'])->name('add_to_cart');
+Route::get('cart', [ProdukController::class, 'cart'])->name('cart');
+Route::patch('update-cart', [ProdukController::class, 'updateCart'])->name('update_cart');
+Route::delete('remove-from-cart', [ProdukController::class, 'remove'])->name('remove_from_cart');
