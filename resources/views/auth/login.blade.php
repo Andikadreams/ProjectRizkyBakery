@@ -57,7 +57,7 @@
                                         <div class="form-group">
                                             <input name="email" type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                                placeholder="Enter Email Address..." value="{{old('email')}}">
                                         </div>
                                         <div class="form-group">
                                             <input name="password" type="password"
@@ -76,7 +76,7 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="{{ route('register.simpan') }}">Create an Account!</a>
+                                        <a class="small" href="{{ route('register') }}">Create an Account!</a>
                                     </div>
                                     <div class="flex items-center justify-end mt-4">
                                         <a href="{{ url('auth/google') }}">

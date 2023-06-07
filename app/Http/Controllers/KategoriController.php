@@ -60,7 +60,7 @@ class KategoriController extends Controller
      */
     public function edit($id)
     {
-        $kategori = Kategori::find($id)->first();
+        $kategori = Kategori::find($id);
 		return view('layouts.admin.kategori.form', ['kategori' => $kategori]);
     }
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Produk;
+use App\Models\Kategori;
 
 class HomeController extends Controller
 {
@@ -23,16 +25,25 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index_pelanggan');
+        $produks = Produk::all();
+        $kategori = Kategori::get();
+        return view('index_pelanggan', compact('produks','kategori'));
     }
 
     public function adminHome()
     {
+        // $produk = Produk::all()->count();
+        $produk = Produk::get();
+        $count = $produk->count();
+        return view('dashboard_admin', ['data' => $produk, 'count' => $count]);
         return view('dashboard_admin');
     }
 
     public function pelangganHome()
     {
+        $produks = Produk::all();
+        $kategori = Kategori::get();
+        return view('index_pelanggan', compact('produks','kategori'));
         return view('index_pelanggan');
     }
 }
