@@ -7,8 +7,8 @@
                 <div>
                     <h4>Address</h4>
                     <p>
-                        A108 Adam Street <br>
-                        New York, NY 535022 - US<br>
+                        Jl. Atletik, Tasikmadu, Kec. Lowokwaru, <br>
+                        Kota Malang, Jawa Timur 65143<br>
                     </p>
                 </div>
 

@@ -280,32 +280,26 @@ section {
   color: #fff;
 }
 
-.header .btn-book-a-table,
-.header .btn-book-a-table:focus {
+.header .btn-book-a-table{
   font-size: 14px;
+  font-weight: 1000;
   color: #fff;
-  background: var(--color-primary);
+  background: #DD2424;
   padding: 8px 20px;
-  margin-left: 20px;
+  margin-left: 450px;
   border-radius: 50px;
   transition: 0.3s;
 }
 
-.header .btn-book-a-table2,
-.header .btn-book-a-table2:focus {
+.header .btn-book-a-table2{
   font-size: 14px;
+  font-weight: 1000;
   color: #fff;
-  background: var(--color-primary);
+  background: #DD2424;
   padding: 8px 20px;
-  margin-left: 8px;
+  margin-left: 10px;
   border-radius: 50px;
   transition: 0.3s;
-}
-
-.header .btn-book-a-table:hover,
-.header .btn-book-a-table:focus:hover {
-  color: #fff;
-  background: rgba(206, 18, 18, 0.8);
 }
 
 
@@ -698,7 +692,7 @@ section {
 }
 
 .about .play-btn:hover:after {
-  border-left: 15px solid var(--color-primary);
+  border-left: 15px solid #ec2727;
   transform: scale(20);
 }
 
@@ -766,7 +760,7 @@ section {
   margin-bottom: 30px;
   font-size: 32px;
   margin-bottom: 30px;
-  background: rgba(206, 18, 18, 0.1);
+  background: rgba(18, 81, 206, 0.1);
   border-radius: 50px;
   display: flex;
   align-items: center;
@@ -1089,267 +1083,6 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Chefs Section
---------------------------------------------------------------*/
-.chefs .chef-member {
-  overflow: hidden;
-  text-align: center;
-  border-radius: 5px;
-  background: #fff;
-  box-shadow: 0px 0 30px rgba(55, 55, 63, 0.08);
-  transition: 0.3s;
-}
-
-.chefs .chef-member .member-img {
-  position: relative;
-  overflow: hidden;
-}
-
-.chefs .chef-member .member-img:after {
-  position: absolute;
-  content: "";
-  left: 0;
-  bottom: 0;
-  height: 100%;
-  width: 100%;
-  background: url(../img/team-shape.svg) no-repeat center bottom;
-  background-size: contain;
-  z-index: 1;
-}
-
-.chefs .chef-member .social {
-  position: absolute;
-  right: -100%;
-  top: 30px;
-  opacity: 0;
-  border-radius: 4px;
-  transition: 0.5s;
-  background: rgba(255, 255, 255, 0.3);
-  z-index: 2;
-}
-
-.chefs .chef-member .social a {
-  transition: color 0.3s;
-  color: rgba(55, 55, 63, 0.4);
-  margin: 15px 12px;
-  display: block;
-  line-height: 0;
-  text-align: center;
-}
-
-.chefs .chef-member .social a:hover {
-  color: rgba(55, 55, 63, 0.9);
-}
-
-.chefs .chef-member .social i {
-  font-size: 18px;
-}
-
-.chefs .chef-member .member-info {
-  padding: 10px 15px 20px 15px;
-}
-
-.chefs .chef-member .member-info h4 {
-  font-weight: 700;
-  margin-bottom: 5px;
-  font-size: 20px;
-  color: var(--color-secondary);
-}
-
-.chefs .chef-member .member-info span {
-  display: block;
-  font-size: 14px;
-  font-weight: 400;
-  color: rgba(33, 37, 41, 0.4);
-}
-
-.chefs .chef-member .member-info p {
-  font-style: italic;
-  font-size: 14px;
-  padding-top: 15px;
-  line-height: 26px;
-  color: rgba(33, 37, 41, 0.7);
-}
-
-.chefs .chef-member:hover {
-  transform: scale(1.08);
-  box-shadow: 0px 0 30px rgba(55, 55, 63, 0.15);
-}
-
-.chefs .chef-member:hover .social {
-  right: 8px;
-  opacity: 1;
-}
-
-/*--------------------------------------------------------------
-# Book A Table Section
---------------------------------------------------------------*/
-.book-a-table .reservation-img {
-  min-height: 500px;
-  background-size: cover;
-  background-position: center;
-}
-
-.book-a-table .reservation-form-bg {
-  background: rgba(55, 55, 63, 0.04);
-}
-
-.book-a-table .php-email-form {
-  padding: 40px;
-}
-
-@media (max-width: 575px) {
-  .book-a-table .php-email-form {
-    padding: 20px;
-  }
-}
-
-.book-a-table .php-email-form h3 {
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.book-a-table .php-email-form h4 {
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin: 20px 0 0 0;
-}
-
-.book-a-table .php-email-form p {
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-
-.book-a-table .php-email-form .error-message {
-  display: none;
-  color: #fff;
-  background: #df1529;
-  text-align: left;
-  padding: 15px;
-  margin-bottom: 24px;
-  font-weight: 600;
-}
-
-.book-a-table .php-email-form .sent-message {
-  display: none;
-  color: #fff;
-  background: #059652;
-  text-align: center;
-  padding: 15px;
-  margin-bottom: 24px;
-  font-weight: 600;
-}
-
-.book-a-table .php-email-form .loading {
-  display: none;
-  background: #fff;
-  text-align: center;
-  padding: 15px;
-  margin-bottom: 24px;
-}
-
-.book-a-table .php-email-form .loading:before {
-  content: "";
-  display: inline-block;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  margin: 0 10px -6px 0;
-  border: 3px solid #059652;
-  border-top-color: #fff;
-  animation: animate-loading 1s linear infinite;
-}
-
-.book-a-table .php-email-form input,
-.book-a-table .php-email-form textarea {
-  border-radius: 0;
-  box-shadow: none;
-  font-size: 14px;
-  border-radius: 0;
-}
-
-.book-a-table .php-email-form input:focus,
-.book-a-table .php-email-form textarea:focus {
-  border-color: var(--color-primary);
-}
-
-.book-a-table .php-email-form input {
-  padding: 12px 15px;
-}
-
-.book-a-table .php-email-form textarea {
-  padding: 12px 15px;
-}
-
-.book-a-table .php-email-form button[type=submit] {
-  background: var(--color-primary);
-  border: 0;
-  padding: 14px 60px;
-  color: #fff;
-  transition: 0.4s;
-  border-radius: 50px;
-}
-
-.book-a-table .php-email-form button[type=submit]:hover {
-  background: #ec2727;
-}
-
-@keyframes animate-loading {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/*--------------------------------------------------------------
-# Gallery Section
---------------------------------------------------------------*/
-.gallery {
-  overflow: hidden;
-}
-
-.gallery .swiper-pagination {
-  margin-top: 20px;
-  position: relative;
-}
-
-.gallery .swiper-pagination .swiper-pagination-bullet {
-  width: 12px;
-  height: 12px;
-  background-color: #d1d1d7;
-  opacity: 1;
-}
-
-.gallery .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: var(--color-primary);
-}
-
-.gallery .swiper-slide-active {
-  text-align: center;
-}
-
-@media (min-width: 992px) {
-  .gallery .swiper-wrapper {
-    padding: 40px 0;
-  }
-
-  .gallery .swiper-slide-active {
-    border: 6px solid var(--color-primary);
-    padding: 4px;
-    background: #fff;
-    z-index: 1;
-    transform: scale(1.2);
-  }
-}
-
-/*--------------------------------------------------------------
 # Contact Section
 --------------------------------------------------------------*/
 .contact .info-item {
@@ -1501,7 +1234,7 @@ section {
   width: 100%;
   background-size: cover;
   position: relative;
-  min-height: 60vh;
+  min-height: 100vh;
   padding: 160px 0 60px 0;
 }
 
