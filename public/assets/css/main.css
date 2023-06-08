@@ -302,6 +302,13 @@ section {
   transition: 0.3s;
 }
 
+.header .btn-secondary{
+  color: #fff;
+  background-color: #DD2424;
+  border: #fff;
+  margin-left: 500px;
+}
+
 
 section {
   scroll-margin-top: 90px;

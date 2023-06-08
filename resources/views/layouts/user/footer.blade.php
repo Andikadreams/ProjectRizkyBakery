@@ -31,12 +31,12 @@
                     <h4>Opening Hours</h4>
                     <p>
                         <strong>Mon-Sat: 11AM</strong> - 23PM<br>
-                        Sunday: Closed
+                        Sunday: Online Only
                     </p>
                 </div>
             </div>
 
-            <div class="col-lg-3 col-md-6 footer-links">
+            <!-- <div class="col-lg-3 col-md-6 footer-links">
                 <h4>Follow Us</h4>
                 <div class="social-links d-flex">
                     <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -44,14 +44,14 @@
                     <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
                     <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </div>
 
     <div class="container">
         <div class="copyright">
-            &copy; Copyright <strong><span>Yummy</span></strong>. All Rights Reserved
+            &copy; Copyright <strong><span>Rizky Bakery</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
             <!-- All the links in the footer should remain intact. -->
