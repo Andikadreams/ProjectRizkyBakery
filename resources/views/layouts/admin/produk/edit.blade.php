@@ -16,12 +16,12 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="kode_produk">Kode Produk</label>
-                        <input type="text" class="form-control" id="kode_produk" name="kode_produk"
+                        <input type="text" class="form-control" required="required" id="kode_produk" name="kode_produk"
                             value="{{ $produk->kode_produk }}">
                     </div>
                     <div class="form-group">
                         <label for="nama_produk">Nama Produk</label>
-                        <input type="text" class="form-control" id="nama_produk" name="nama_produk"
+                        <input type="text" class="form-control" required="required" id="nama_produk" name="nama_produk"
                             value="{{ $produk->nama_produk }}">
                     </div>
                     <div class="form-group">
@@ -31,7 +31,7 @@
                         </div>
                     <div class="form-group">
                         <label for="id_kategori">Kategori Produk</label>
-                        <select name="id_kategori" id="id_kategori" class="custom-select">
+                        <select name="id_kategori" required="required" id="id_kategori" class="custom-select">
                             <option value="" selected disabled hidden>-- Pilih Kategori --</option>
                             @foreach ($kategori as $row)
                             <option value="{{ $row->id }}"
@@ -42,12 +42,12 @@
                     </div>
                     <div class="form-group">
                         <label for="harga">Harga Produk</label>
-                        <input type="number" class="form-control" id="harga" name="harga"
+                        <input type="number" class="form-control" required="required" id="harga" name="harga"
                             value="{{ $produk->harga }}">
                     </div>
                     <div class="form-group">
                         <label for="jumlah">Jumlah Produk</label>
-                        <input type="number" class="form-control" id="jumlah" name="jumlah"
+                        <input type="number" class="form-control" required="required" id="jumlah" name="jumlah"
                             value="{{ $produk->jumlah }}">
                     </div>
                 </div>

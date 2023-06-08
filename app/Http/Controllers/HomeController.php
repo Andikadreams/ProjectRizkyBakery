@@ -34,8 +34,10 @@ class HomeController extends Controller
     {
         // $produk = Produk::all()->count();
         $produk = Produk::get();
+        $kategori = Kategori::get();
         $count = $produk->count();
-        return view('dashboard_admin', ['data' => $produk, 'count' => $count]);
+        $count1 = $kategori->count();
+        return view('dashboard_admin', ['data' => $produk, 'count' => $count, 'count1' => $count1]);
         return view('dashboard_admin');
     }
 

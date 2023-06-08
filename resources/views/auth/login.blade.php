@@ -46,10 +46,10 @@
                                     <form action="{{ route('login') }}" method="POST" class="user">
                                         @csrf
                                         @if ($errors->any())
-                                        <div class="alert alert-danger">
+                                        <div class="alert alert-danger" >
                                             <ul>
                                                 @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
+                                                <li style="font-size: 12pt;">{{ $error }}</li>
                                                 @endforeach
                                             </ul>
                                         </div>
