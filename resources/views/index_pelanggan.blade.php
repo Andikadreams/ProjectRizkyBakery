@@ -475,7 +475,7 @@
               <div>
                 <h3>Opening Hours</h3>
                 <div><strong>Mon-Sat:</strong> 11AM - 23PM;
-                  <strong>Sunday:</strong> Closed
+                  <strong>Sunday:</strong> Online Only
                 </div>
               </div>
             </div>
