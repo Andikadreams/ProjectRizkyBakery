@@ -9,6 +9,10 @@ use App\Http\Controllers\LoginWithGoogleController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\RiwayatController;
+use App\Http\Controllers\ShopController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -109,5 +113,14 @@ Route::get('auth/google/callback', [LoginWithGoogleController::class, 'handleGoo
 
 Route::get('register',[AuthController::class, 'register'])->name('register');
 Route::post('register/simpan',[AuthController::class, 'registerSimpan'])->name('register.simpan');
+
+Route::get('shop', [ShopController::class, 'index'])->name('shop');
+Route::get('pesan/{id}', [OrderController::class,'index'])->name('pesan');
+Route::post('pesan/{id}', [OrderController::class,'pesan'])->name('tambahKeranjang');
+Route::get('check-out', [OrderController::class,'check_out'])->name('checkout');
+Route::delete('check-out/{id}', [OrderController::class,'delete'])->name('delete');
+Route::get('konfirmasi-check-out',[OrderController::class,'konfirmasi'])->name('konfirmasi');
+Route::get('riwayat',[RiwayatController::class, 'index'])->name('riwayat');
+route::get('riwayat/{id}',[RiwayatController::class, 'detail'])->name('riwayat_detail');
 
 
