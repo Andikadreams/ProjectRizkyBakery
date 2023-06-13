@@ -33,6 +33,7 @@
                         <label for="jumlah">Leveling</label>
                         <select name="level" id="level" class="custom-select">
                             <option value="" selected disabled hidden>-- Pilih Leveling --</option>
+                            <option value="owner">Owner</option>
                             <option value="admin">Admin</option>
                             <option value="pelanggan">Pelanggan</option>
                         </select>

@@ -11,38 +11,63 @@
   <!-- Divider -->
   <hr class="sidebar-divider my-0">
 
+  @if(Auth::user()->level == 'admin')
   <!-- Nav Item - Dashboard -->
   <li class="nav-item">
     <a class="nav-link" href="{{ route('dashboard') }}">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Dashboard</span></a>
   </li>
+  @else
+	@endif
 
+  @if(Auth::user()->level == 'owner')
+  <!-- Nav Item - Dashboard -->
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('dashboard_owner') }}">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span>Dashboard</span></a>
+  </li>
+  @else
+	@endif
+
+  @if(Auth::user()->level == 'owner')
   <li class="nav-item">
     <a class="nav-link" href="{{ route('user') }}">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Manajemen User</span></a>
   </li>
+  @else
+	@endif
 
+  @if(Auth::user()->level == 'admin')
   <li class="nav-item">
     <a class="nav-link" href="{{ route('produk') }}">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Produk</span></a>
   </li>
+  @else
+	@endif
 
+  @if(Auth::user()->level == 'admin')
   <li class="nav-item">
     <a class="nav-link" href="{{ route('kategori') }}">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Kategori</span></a>
   </li>
+  @else
+	@endif
 
+  @if(Auth::user()->level == 'admin')
   <li class="nav-item">
     <a class="nav-link" href="#">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Pesanan</span></a>
   </li>
+  @else
+	@endif
 
-  @if(Auth::user()->level == 'admin')
+  @if(Auth::user()->level == 'owner')
   <li class="nav-item">
     <a class="nav-link" href="#">
       <i class="fas fa-fw fa-tachometer-alt"></i>

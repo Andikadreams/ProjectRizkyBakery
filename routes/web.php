@@ -30,6 +30,22 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Auth::routes();
 
+/*------------------------------------------
+--------------------------------------------
+All Admin Routes List
+--------------------------------------------
+--------------------------------------------*/
+Route::group(['middleware' => ['auth','level:owner']], function(){
+	Route::get('/dashboard/owner', [App\Http\Controllers\HomeController::class, 'ownerHome'])->name('dashboard_owner');
+	Route::controller(UserController::class)->prefix('user')->group(function () {
+		Route::get('', 'index')->name('user');
+		Route::get('tambah', 'create')->name('user.create');
+		Route::post('tambah', 'store')->name('user.create.store');
+		Route::get('edit/{id}', 'edit')->name('user.edit');
+		Route::post('edit/{id}', 'update')->name('user.create.update');
+		Route::get('hapus/{id}', 'destroy')->name('user.destroy');
+	});
+});
 
 /*------------------------------------------
 --------------------------------------------
@@ -60,14 +76,7 @@ Route::group(['middleware' => ['auth','level:admin']], function(){
 		Route::get('hapus/{id}', 'destroy')->name('produk.destroy');
 	});
 
-	Route::controller(UserController::class)->prefix('user')->group(function () {
-		Route::get('', 'index')->name('user');
-		Route::get('tambah', 'create')->name('user.create');
-		Route::post('tambah', 'store')->name('user.create.store');
-		Route::get('edit/{id}', 'edit')->name('user.edit');
-		Route::post('edit/{id}', 'update')->name('user.create.update');
-		Route::get('hapus/{id}', 'destroy')->name('user.destroy');
-	});
+	
 
 });
 /*------------------------------------------

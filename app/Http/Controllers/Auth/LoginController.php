@@ -72,6 +72,8 @@ class LoginController extends Controller
                 // Login berhasil
                 if(auth()->user()->level == 'admin') {
                     return redirect()->route('dashboard');
+                }else if(auth()->user()->level == 'owner'){
+                    return redirect()->route('dashboard_owner');
                 }else{
                     return redirect()->route('home');
                 }
