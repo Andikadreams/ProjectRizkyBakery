@@ -19,7 +19,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <img src="{{ $produk->foto_produk }}" class="rounded mx-auto d-block" width="100%"
+                                <img src="{{ asset('storage/'.$produk->foto_produk) }}" class="rounded mx-auto d-block" width="100%"
                                     alt=""
                                     style="height: 350px; object-fit: cover; width: 100%; object-position:bottom">
                             </div>

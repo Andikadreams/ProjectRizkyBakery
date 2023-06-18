@@ -15,11 +15,6 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-<<<<<<< HEAD
-        "sweetalert2": "^11.7.11"
-=======
-        "bootstrap-icons": "^1.10.5",
-        "bootstrap-icons-font": "^2.0.7"
->>>>>>> fc61e493dc85d2d84c1ae3bb24416b85671c1146
+        "sweetalert2": "^11.7.12"
     }
 }

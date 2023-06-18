@@ -3,10 +3,14 @@
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard')}}">
     <div class="sidebar-brand-icon rotate-n-15">
-      <i class="fas fa-laugh-wink"></i>
+    <img src="{{ asset('public/img/logoRB.jpeg') }}" alt="Group Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
     </div>
     <div class="sidebar-brand-text mx-3">Rb Admin <sup>2</sup></div>
   </a>
+  <!-- <a href="{{ route('home') }}" class="brand-link">
+        <img src="{{ asset('AdminLTE/dist/img/Group 1.png') }}" alt="Group Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-bold text-dark">Sahabat Tani</span>
+    </a> -->
 
   <!-- Divider -->
   <hr class="sidebar-divider my-0">
@@ -60,7 +64,7 @@
 
   @if(Auth::user()->level == 'admin')
   <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="{{ route('pesanan') }}">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Pesanan</span></a>
   </li>

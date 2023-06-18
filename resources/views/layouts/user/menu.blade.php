@@ -47,8 +47,8 @@
                 <div class="row gy-5">
                     @foreach ($produks as $produk)
                     <div class="col-lg-4 menu-item">
-                        <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img
-                                src="{{ $produk->foto_produk }}" class="menu-img img-fluid" alt="" style="height: 300px; object-fit: cover; width: 100%; object-position:bottom"></a>
+                        <a href="" class="glightbox"><img src="{{ asset('storage/'.$produk->foto_produk) }}" 
+                        class="menu-img img-fluid" alt="" style="height: 300px; object-fit: cover; width: 100%; object-position:bottom"></a>
                         <h4>{{ $produk->nama_produk }}</h4>
                         <p class="ingredients">
                             Must Try This 1

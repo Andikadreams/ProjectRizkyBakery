@@ -35,9 +35,9 @@
                                 <td>{{ $orders->tanggal }}</td>
                                 <td>
                                     @if($orders->status == 1)
-                                    Sudah Pesan & Belum dibayar
+                                    Sudah Dibayar
                                     @else
-                                    Sudah dibayar 
+                                    Belum Dibayar 
                                     @endif
                                 </td>
                                 <td>Rp. {{ number_format($orders->jumlah_harga+$orders->kode) }}</td>

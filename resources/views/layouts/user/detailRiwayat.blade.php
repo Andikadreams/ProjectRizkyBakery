@@ -61,7 +61,7 @@
                             </tr>
                             <tr>
                                 <td colspan="5" ><strong>Kode Unik :</strong></td>
-                                <td ><strong>Rp. {{ number_format($order->kode) }}</strong></td>
+                                <td ><strong>{{ number_format($order->kode) }}</strong></td>
                                 
                             </tr>
                              <tr>

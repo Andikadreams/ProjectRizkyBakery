@@ -16,22 +16,22 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="name">Nama</label>
-                        <input type="text" class="form-control" id="name" name="name"
+                        <input type="text" required="required" class="form-control" id="name" name="name"
                         value="{{ isset($user) ? $user->name : '' }}">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email" name="email"
+                        <input type="text" required="required" class="form-control" id="email" name="email"
                         value="{{ isset($user) ? $user->email : '' }}">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password"
+                        <input type="password" required="required" class="form-control" id="password" name="password"
                         value="{{ isset($user) ? $user->password : '' }}">
                     </div>
                     <div class="form-group">
                         <label for="jumlah">Leveling</label>
-                        <select name="level" id="level" class="custom-select">
+                        <select name="level" required="required" id="level" class="custom-select">
                             <option value="" selected disabled hidden>-- Pilih Leveling --</option>
                             <option value="owner">Owner</option>
                             <option value="admin">Admin</option>
