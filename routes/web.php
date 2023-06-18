@@ -63,8 +63,9 @@ Route::group(['middleware' => ['auth','level:owner']], function(){
 
 	Route::controller(PesananController::class)->prefix('laporan')->group(function (){
 		Route::get('', 'laporanPenjualan')->name('laporan.penjualan');
-		Route::get('cetak', 'cetakLaporan')->name('cetak.laporan');
 	});
+
+	Route::get('/laporan/cetak', [App\Http\Controllers\PesananController::class, 'cetakLaporan'])->name('cetak.laporan');
 
 	// Route::controller(ProfileController::class)->prefix('profile')->group(function (){
 	// 	Route::get('', 'show')->name('profile.owner');
