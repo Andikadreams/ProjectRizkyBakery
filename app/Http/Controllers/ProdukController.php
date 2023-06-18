@@ -54,8 +54,8 @@ class ProdukController extends Controller
 		];
         $validate = Produk::where('kode_produk', $request->kode_produk)->first();
         if($validate){
-            Alert::error('Gagal Menambah Produk','Kode Produk Tidak Boleh Sama!');
-            return redirect()->route('produk');
+            // Alert::error('Gagal Menambah Produk','Kode Produk Tidak Boleh Sama!');
+            return redirect()->route('produk')->with('error','Kode Produk Tidak Boleh Sama!');
         }
         else{
             Produk::create($data);
@@ -120,7 +120,7 @@ class ProdukController extends Controller
 		];
 
 		Produk::find($id)->update($data);
-		return redirect()->route('produk');
+		return redirect()->route('produk')->with('success','Berhasil Mengubah Data Produk');
     }
 
     /**
@@ -132,7 +132,7 @@ class ProdukController extends Controller
     public function destroy($id)
     {
         Produk::find($id)->delete();
-		return redirect()->route('produk');
+		return redirect()->route('produk')->with('success','Berhasil Menghapus Data Produk');
     }
 
     public function search(Request $request){

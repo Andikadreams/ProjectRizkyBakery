@@ -2,10 +2,10 @@
 
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard')}}">
-    <div class="sidebar-brand-icon rotate-n-15">
-    <img src="{{ asset('public/img/logoRB.jpeg') }}" alt="Group Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <div class="sidebar-brand-icon rotate-n-0">
+    <img src="{{ asset('img/logoRB-removebg-preview.png') }}" alt="Group Logo" width="130px" height="auto" class="brand-image img-circle elevation-1" style="opacity: .8">
     </div>
-    <div class="sidebar-brand-text mx-3">Rb Admin <sup>2</sup></div>
+    <div class="sidebar-brand-text mx-3">Rb Admin <sup></sup></div>
   </a>
   <!-- <a href="{{ route('home') }}" class="brand-link">
         <img src="{{ asset('AdminLTE/dist/img/Group 1.png') }}" alt="Group Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -73,7 +73,7 @@
 
   @if(Auth::user()->level == 'owner')
   <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="{{ route('laporan.penjualan') }}">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Laporan Penjualan</span></a>
   </li>

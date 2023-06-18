@@ -36,7 +36,14 @@
                             <option value="{{ $user->level }}"
                                 {{ ($user->level == $user->level ? 'selected' : '')}}>
                                 {{ $user->level }}</option>
-                            <option value="pelanggan">pelanggan</option>
+                                @if($user->level == 'admin')
+                            <option value="pelanggan">Pelanggan</option>
+                            <option value="owner">Owner</option>
+                            @endif
+                            @if($user->level == 'owner')
+                            <option value="pelanggan">Pelanggan</option>
+                            <option value="admin">Admin</option>
+                            @endif
                         </select>
                     </div>
                 </div>

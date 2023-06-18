@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Selamat Datang')
+@section('title', 'Selamat Datang Di Dashboard Admin')
 
 @section('contents')
 <h4>{{ Auth::user()->name }}

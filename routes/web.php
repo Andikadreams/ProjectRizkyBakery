@@ -61,8 +61,9 @@ Route::group(['middleware' => ['auth','level:owner']], function(){
 		Route::get('/search','search')->name('user.search');
 	});
 
-	Route::controller(PesananController::class)->prefix('pesanan')->group(function (){
-		Route::get('', 'pesananMasuk')->name('pesanan');
+	Route::controller(PesananController::class)->prefix('laporan')->group(function (){
+		Route::get('', 'laporanPenjualan')->name('laporan.penjualan');
+		Route::get('cetak', 'cetakLaporan')->name('cetak.laporan');
 	});
 
 	// Route::controller(ProfileController::class)->prefix('profile')->group(function (){
@@ -86,6 +87,7 @@ Route::group(['middleware' => ['auth','level:admin']], function(){
 		Route::post('tambah', 'store')->name('kategori.create.store');
 		Route::get('edit/{id}', 'edit')->name('kategori.edit');
 		Route::post('edit/{id}', 'update')->name('kategori.create.update');
+		Route::get('detail/{id}', 'show')->name('kategori.detail');
 		Route::get('hapus/{id}', 'destroy')->name('kategori.destroy');
 		Route::get('/search','search')->name('kategori.search');
 

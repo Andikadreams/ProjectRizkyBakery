@@ -6,13 +6,21 @@
 @include('sweetalert::alert')
 
 @if(Session::has('success'))
-        <div class="alert alert-success">
-            {{ Session::get('success') }}
-            @php
-                Session::forget('success');
-            @endphp
-        </div>
-        @endif
+<div class="alert alert-success">
+    {{ Session::get('success') }}
+    @php
+    Session::forget('success');
+    @endphp
+</div>
+@endif
+@if(Session::has('error'))
+<div class="alert alert-danger">
+    {{ Session::get('error') }}
+    @php
+    Session::forget('error');
+    @endphp
+</div>
+@endif
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Data Produk</h6>
@@ -22,9 +30,14 @@
         <a href="{{ route('produk.create') }}" class="btn btn-primary mb-3">Tambah Produk</a>
         <a class="btn btn-success right mb-3" href="{{ route('produk') }}">Semua Produk</a>
         @endif
-        <form class="form-left my-2"
-            method="get" action="{{ route('produk.search') }}">
-            
+        <form class="form-left my-2" method="get" action="{{ route('produk.search') }}">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control w-50 d-inline" id="search"
+                    placeholder="Masukkan Nama">
+                <button type="submit" class="btn btn-primary mb-1">Cari</button>
+                <div class="input-group-append">
+                </div>
+            </div>
         </form>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -51,7 +64,8 @@
                         <td>{{ $row->jumlah }}</td>
                         <td>
                             <a href="{{ route('produk.detail', $row->id) }}" class="btn btn-info">Detail</a>
-                            <a href="{{ route('produk.edit', $row->id) }}" class="btn btn-warning edit-button edit-button"
+                            <a href="{{ route('produk.edit', $row->id) }}"
+                                class="btn btn-warning edit-button edit-button"
                                 onclick="confirmationEdit(event)">Edit</a>
                             <a href="{{ route('produk.destroy', $row->id) }}" class="btn btn-danger delete-button"
                                 onclick="confirmationDel(event)">Hapus</a>

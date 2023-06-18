@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -9,8 +10,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>RB Admin 2 - Dashboard</title>
-    <link href="assets/img/logoRB.jpeg" rel="icon">
+    <title>RB Admin - Dashboard</title>
+    <link rel="icon" href="{{asset('img/logoRB-removebg-preview.png')}}" style="width: 100%;" >
 
     
     <!-- SweetAlert -->
@@ -95,6 +96,7 @@
                         <h1 class="h3 mb-0 text-gray-800">@yield('title')</h1>
                     </div>
 
+                    <!-- Content -->
                     @yield('contents')
 
                     <!-- Content Row -->

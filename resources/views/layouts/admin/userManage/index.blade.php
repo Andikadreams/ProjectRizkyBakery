@@ -5,7 +5,7 @@
 @section('contents')
 
 @if(Session::has('error'))
-<div class="alert alert-error">
+<div class="alert alert-danger">
     {{ Session::get('error') }}
     @php
     Session::forget('error');
@@ -13,13 +13,13 @@
 </div>
 @endif
 @if(Session::has('success'))
-        <div class="alert alert-success">
-            {{ Session::get('success') }}
-            @php
-                Session::forget('success');
-            @endphp
-        </div>
-        @endif
+<div class="alert alert-success">
+    {{ Session::get('success') }}
+    @php
+    Session::forget('success');
+    @endphp
+</div>
+@endif
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
@@ -28,11 +28,11 @@
         <a href="{{ route('user.create') }}" class="btn btn-primary mb-3">Tambah User</a>
         <a class="btn btn-success right mb-3" href="{{ route('user') }}">Tampilkan Semua User</a>
         <!-- Topbar Search -->
-        <form class="form-left my-2"
-            method="get" action="{{ route('user.search') }}">
+        <form class="form-left my-2" method="get" action="{{ route('user.search') }}">
             <div class="input-group">
-            <input type="text" name="search" class="form-control w-50 d-inline" id="search" placeholder="Masukkan Nama">
-                        <button type="submit" class="btn btn-primary mb-1">Cari</button>
+                <input type="text" name="search" class="form-control w-50 d-inline" id="search"
+                    placeholder="Masukkan Nama">
+                <button type="submit" class="btn btn-primary mb-1">Cari</button>
                 <div class="input-group-append">
                 </div>
             </div>
@@ -62,12 +62,18 @@
                         <td>{{ $row->level }}</td>
                         <td>
                             @if($row->level == 'admin')
-                            <a href="{{ route('user.edit', $row->id) }}" class="btn btn-warning edit-button" onclick="confirmationEdit(event)">Edit</a>
-                            <a href="{{ route('user.destroy', $row->id) }}" class="btn btn-danger">Hapus</a>
-                            @elseif($row->level == 'pelanggan' || $row->level == 'owner')
-                            <a href="{{ route('user.destroy', $row->id) }}" class="btn btn-danger delete-button" onclick="confirmationDel(event)">Hapus</a>
+                            <a href="{{ route('user.edit', $row->id) }}" class="btn btn-warning edit-button"
+                                onclick="confirmationEdit(event)">Edit</a>
+                            <a href="{{ route('user.destroy', $row->id) }}" class="btn btn-danger"
+                                onclick="confirmationDel(event)">Hapus</a>
+                            @elseif($row->level == 'pelanggan')
+                            <a href="{{ route('user.destroy', $row->id) }}" class="btn btn-danger delete-button"
+                                onclick="confirmationDel(event)">Hapus</a>
                             @elseif($row->level == 'owner')
-                            <a href="{{ route('user.destroy', $row->id) }}" class="btn btn-danger">Hapus</a>
+                            <a href="{{ route('user.edit', $row->id) }}" class="btn btn-warning edit-button"
+                                onclick="confirmationEdit(event)">Edit</a>
+                            <a href="{{ route('user.destroy', $row->id) }}" class="btn btn-danger"
+                                onclick="confirmationDel(event)">Hapus</a>
                             @endif
                         </td>
                     </tr>
