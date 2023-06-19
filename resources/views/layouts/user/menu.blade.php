@@ -3,7 +3,7 @@
 
         <div class="section-header">
             <h2>Our Menu</h2>
-            <p>Check Our <span>Yummy Menu</span></p>
+            <p>Check Our <span>Menu</span></p>
         </div>
 
         {{-- <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
