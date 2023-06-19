@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Produk;
 use App\Models\Kategori;
 use App\Models\OrderDetail;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -32,19 +33,17 @@ class HomeController extends Controller
     }
 
     public function ownerHome(){
-        return view('dashboard_owner');
+        $count_pelanggan = User::get('level')->where('level','==','pelanggan')->count();
+        return view('dashboard_owner',compact('count_pelanggan'));
     }
 
     public function adminHome()
     {
         // $produk = Produk::all()->count();
-        $orderMasuk = OrderDetail::get();
-        $produk = Produk::get();
-        $kategori = Kategori::get();
-        $count_produk = $produk->count();
-        $count_kategori = $kategori->count();
-        $count_orderMasuk = $orderMasuk->count();
-        return view('dashboard_admin', ['data' => $produk, 'count_produk' => $count_produk, 'count_kategori' => $count_kategori, 'count_orderMasuk' => $count_orderMasuk]);
+        $count_produk = Produk::get()->count();
+        $count_kategori = Kategori::get()->count();
+        $count_orderMasuk = OrderDetail::get()->count();
+        return view('dashboard_admin', ['count_produk' => $count_produk, 'count_kategori' => $count_kategori, 'count_orderMasuk' => $count_orderMasuk]);
         // return view('dashboard_admin');
     }
 

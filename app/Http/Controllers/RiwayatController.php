@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Order;
+use App\Models\Produk;
 use App\Models\OrderDetail;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,9 +22,10 @@ class RiwayatController extends Controller
 
     public function detail($id)
     {
+        $produk = Produk::get();
     	$order = Order::where('id', $id)->first();
     	$order_details = OrderDetail::where('order_id', $order->id)->get();
 
-     	return view('layouts.user.detailRiwayat', compact('order','order_details'));
+     	return view('layouts.user.detailRiwayat', compact('order','order_details','produk'));
     }
 }
