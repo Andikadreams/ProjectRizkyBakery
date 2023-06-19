@@ -47,4 +47,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+<<<<<<< HEAD
+
+    public function Admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
+    public function Pelanggan()
+    {
+        return $this->belongsTo(Pelanggan::class);
+    }
+    public function Rating()
+    {
+        return $this->belongsTo(Rating::class);
+    }
+=======
+>>>>>>> cd53577fff24aee79a9a024be2c165f55eab1f11
 }

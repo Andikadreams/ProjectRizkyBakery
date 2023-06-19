@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\OrderDetail;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Produk;
+use App\Models\Rating;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -19,8 +20,10 @@ class OrderController extends Controller
     public function index($id)
     {
     	$produk = Produk::where('id', $id)->first();
+        $avg = Rating::where('produk_id', $produk->id)
+        ->avg('rate');
 
-    	return view('layouts.user.pesan', compact('produk'));
+    	return view('layouts.user.pesan', compact('produk', 'avg'));
     }
 
     // public function pesan(Request $request, $id)
@@ -212,10 +215,27 @@ class OrderController extends Controller
             $produk->update();
         }
 
-
         return redirect('riwayat/'.$order_id)->with('success','Orer sukses silahkan lanjut ke pembayaran');
-
     }
 
-    
+    public function rating(Request $request, $id){
+        $produk = Produk::where('id', $id)->first();
+        
+        //tambah ke table rating
+    	$cek_rating = Rating::where('user_id', Auth::user()->id)->where('produk_id', $produk->id)->first();
+
+        if (empty($cek_rating)) {
+            $rating = new Rating;
+            $rating->user_id = Auth::user()->id;
+            $rating->produk_id = $produk->id;
+            $rating->rate = $request->rate;
+            $rating->save();
+        }elseif ($cek_rating->rate > 0) {
+            $rating = Rating::where('user_id', Auth::user()->id)
+            ->where('rate', '>', 0)
+            ->update(['rate' => $request->rate]);
+        }
+        
+        return redirect('pesan/'.$id)->with('success', 'Rate berhasil ditambahkan.');
+    }
 }

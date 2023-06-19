@@ -64,7 +64,11 @@
 
   @if(Auth::user()->level == 'admin')
   <li class="nav-item">
+<<<<<<< HEAD
+    <a class="nav-link" href="{{route('pesanan')}}">
+=======
     <a class="nav-link" href="{{ route('pesanan') }}">
+>>>>>>> cd53577fff24aee79a9a024be2c165f55eab1f11
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Pesanan</span></a>
   </li>

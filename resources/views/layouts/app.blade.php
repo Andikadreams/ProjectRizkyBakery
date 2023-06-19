@@ -53,11 +53,11 @@
                         @else
                         <li class="nav-item">
                                 <?php
-                                //  $pesanan_utama = \App\Models\Order::where('user_id', Auth::user()->id)->where('status',0)->first();
-                                //  if(!empty($pesanan_utama))
-                                //     {
-                                //      $notif = \App\Models\OrderDetail::where('produk_id', $pesanan_utama->id)->count(); 
-                                //     }
+                                 $pesanan_utama = \App\Models\Order::where('user_id', Auth::user()->id)->where('status',0)->first();
+                                 if(!empty($pesanan_utama))
+                                    {
+                                     $notif = \App\Models\OrderDetail::where('produk_id', $pesanan_utama->id)->count(); 
+                                    }
                                 ?>
                                 <a class="nav-link" href="{{ url('check-out') }}">
                                     <i class="fa fa-shopping-cart"></i>

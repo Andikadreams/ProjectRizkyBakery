@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\OrderDetail;
-use App\Http\Requests\StoreOrderDetailRequest;
-use App\Http\Requests\UpdateOrderDetailRequest;
+use App\Models\Rating;
+use App\Models\Produk;
+use Illuminate\Support\Facades\Request;
 
-class OrderDetailController extends Controller
+class RatingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,21 +31,24 @@ class OrderDetailController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreOrderDetailRequest  $request
+     * @param  \App\Http\Requests\StoreRatingRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOrderDetailRequest $request)
-    {
-        //
-    }
+    public function store(Produk $produk, Request $request)
+{
+    
+}
+
+// Implementasikan fungsi-fungsi lainnya seperti show, update, dan destroy
+
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\OrderDetail  $orderDetail
+     * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function show(OrderDetail $orderDetail)
+    public function show(Rating $rating)
     {
         //
     }
@@ -53,10 +56,10 @@ class OrderDetailController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\OrderDetail  $orderDetail
+     * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function edit(OrderDetail $orderDetail)
+    public function edit(Rating $rating)
     {
         //
     }
@@ -64,11 +67,11 @@ class OrderDetailController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateOrderDetailRequest  $request
-     * @param  \App\Models\OrderDetail  $orderDetail
+     * @param  \App\Http\Requests\UpdateRatingRequest  $request
+     * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateOrderDetailRequest $request, OrderDetail $orderDetail)
+    public function update( $request, Rating $rating)
     {
         //
     }
@@ -76,10 +79,10 @@ class OrderDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\OrderDetail  $orderDetail
+     * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OrderDetail $orderDetail)
+    public function destroy(Rating $rating)
     {
         //
     }
