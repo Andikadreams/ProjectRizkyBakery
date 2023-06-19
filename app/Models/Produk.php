@@ -25,4 +25,9 @@ class Produk extends Model
 	{
 		return $this->belongsTo(Kategori::class, 'id_kategori');
 	}
+
+    public function Rating()
+    {
+        return $this->belongsTo(Rating::class);
+    }
 }

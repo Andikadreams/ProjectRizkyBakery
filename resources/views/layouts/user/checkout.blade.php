@@ -56,7 +56,7 @@
                                 <td colspan="5" align="right"><strong>Total Harga :</strong></td>
                                 <td align="right"><strong>Rp. {{ number_format($order->jumlah_harga) }}</strong></td>
                                 <td>
-                                    <a href="{{ url('konfirmasi-check-out') }}" class="btn btn-success" onclick="return confirm('Anda yakin akan Check Out ?');">
+                                    <a href="{{ url('konfirmasi-check-out') }}" class="btn btn-success" onclick="return confirm('Anda yakin akan Check Out ?')">
                                         <i class="fa fa-shopping-cart"></i> Check Out
                                     </a>
                                 </td>

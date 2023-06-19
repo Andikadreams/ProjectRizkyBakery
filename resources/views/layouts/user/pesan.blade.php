@@ -33,10 +33,15 @@
                                             <td>Rp. {{ number_format($produk->harga) }}</td>
                                         </tr>
                                         <tr>
+                                            <td>Rating Average</td>
+                                            <td>:</td>
+                                            <td>{{ ($avg) }}</td>
+                                        </tr>
+                                        <tr>
                                             <td>Stok</td>
                                             <td>:</td>
                                             <td>{{ number_format($produk->jumlah) }}</td>
-                                        </tr>
+                                        </tr>  
                                         {{-- <tr>
                                         <td>Keterangan</td>
                                         <td>:</td>
@@ -53,6 +58,19 @@
                                                         required="">
                                                     <button type="submit" class="btn btn-primary mt-2"><i
                                                             class="fa fa-shopping-cart"></i> Masukkan Keranjang</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rating</td>
+                                            <td>:</td>
+                                            <td>
+                                                <form method="post" action="{{ route('rate', ['id'=>$produk->id]) }}">
+                                                    @csrf
+                                                    <input type="text" name="rate" class="form-control"
+                                                        required="">
+                                                    <button type="submit" class="btn btn-primary mt-2"><i
+                                                            class="bi bi-star"></i> Beri Rating </button>
                                                 </form>
                                             </td>
                                         </tr>

@@ -45,11 +45,15 @@ class User extends Authenticatable
     ];
 
     public function Admin()
-	{
-		return $this->belongsTo(Admin::class);
-	}
+    {
+        return $this->belongsTo(Admin::class);
+    }
     public function Pelanggan()
-	{
-		return $this->belongsTo(Pelanggan::class);
-	}
+    {
+        return $this->belongsTo(Pelanggan::class);
+    }
+    public function Rating()
+    {
+        return $this->belongsTo(Rating::class);
+    }
 }

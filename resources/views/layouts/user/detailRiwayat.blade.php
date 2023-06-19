@@ -44,7 +44,7 @@
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td>
-                                    <img src="{{ url('uploads') }}/{{ $pesanan_detail->produk->foto_produk }}" width="100" alt="...">
+                                    <img src="{{ $pesanan_detail->produk->foto_produk }}" width="100" alt="...">
                                 </td>
                                 <td>{{ $pesanan_detail->produk->nama_produk }}</td>
                                 <td>{{ $pesanan_detail->jumlah }}</td>
@@ -61,7 +61,7 @@
                             </tr>
                             <tr>
                                 <td colspan="5" ><strong>Kode Unik :</strong></td>
-                                <td ><strong>Rp. {{ number_format($order->kode) }}</strong></td>
+                                <td ><strong>{{ number_format($order->kode) }}</strong></td>
                                 
                             </tr>
                              <tr>

@@ -7,7 +7,6 @@
             <!-- <img src="assets/img/logo.png" alt=""> -->
             <h1><span>Rizky Bakery.</span></h1>
         </a>
-
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a href="#hero">Home</a></li>
