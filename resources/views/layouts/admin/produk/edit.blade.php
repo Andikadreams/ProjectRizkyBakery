@@ -27,7 +27,7 @@
                     <div class="form-group">
                             <label for="image">Foto Produk</label><br>
                             <img width="150px" src="{{asset('storage/'.$produk->foto_produk)}}" style="margin-bottom: 13px;">
-                            <input type="file" required="required" class="form-control" name="image" value="{{ isset($produk) ? $produk->foto_produk : '' }}">
+                            <input type="file" class="form-control" name="image" value="{{ isset($produk) ? $produk->foto_produk : '' }}">
                         </div>
                     <div class="form-group">
                         <label for="id_kategori">Kategori Produk</label>

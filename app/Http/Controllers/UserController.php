@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Admin;
+use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -16,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::all();
+        $user = User::paginate(5);
 		return view('layouts.admin.userManage.index', ['data' => $user]);
     }
 
@@ -67,9 +71,9 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        //
+        // 
     }
 
     /**
@@ -108,7 +112,7 @@ class UserController extends Controller
 		];
 
         User::find($id)->update($data);
-        return redirect()->route('user');
+        return redirect()->route('user')->with('success', 'Berhasil Mengubah data User');
     }
 
     /**
@@ -119,7 +123,19 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        $userCount = User::where('level', '=', 'owner')->count();
+        if ($userCount == 1) {
+            return redirect()->route('user')->with('error','Gagal, Akun Owner Tersisa 1!!!');
+        }
         User::find($id)->delete();
 		return redirect()->route('user');
     }
+
+    public function search(Request $request){
+        $keyword = $request->search;
+        $user = User::where('name', 'like', "%" . $keyword . "%")->paginate(5);
+        return view('layouts.admin.userManage.index', ['data' => $user])->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+    
+
 }

@@ -23,9 +23,11 @@ class Level
         }
 
         if(Auth::user()->level == 'admin'){
-            return Redirect::to('dashboard');
+            return Redirect::route('dashboard');
         }else if(Auth::user()->level == 'pelanggan'){
-            return Redirect::to('home');
+            return Redirect::route('home');
+        }else{
+            return Redirect::route('dashboard_owner');
         }
         
     }

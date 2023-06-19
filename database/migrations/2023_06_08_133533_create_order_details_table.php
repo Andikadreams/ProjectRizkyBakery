@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('order_detail', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('produk_id');
-            $table->integer('order_id');
+            $table->foreignId('produk_id')->references('id')->on('produk');
+            $table->foreignId('order_id')->references('id')->on('order');
             $table->integer('jumlah');
             $table->integer('jumlah_harga');
             $table->timestamps();

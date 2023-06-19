@@ -23,6 +23,10 @@ class User extends Authenticatable
         'password',
         'google_id',
         'level',
+        'alamat',
+        'foto',
+        'no_hp',
+        'tgl_lahir',
     ];
 
     /**
@@ -43,6 +47,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+<<<<<<< HEAD
 
     public function Admin()
     {
@@ -56,4 +61,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Rating::class);
     }
+=======
+>>>>>>> cd53577fff24aee79a9a024be2c165f55eab1f11
 }

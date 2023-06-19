@@ -2,11 +2,15 @@
 
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard')}}">
-    <div class="sidebar-brand-icon rotate-n-15">
-      <i class="fas fa-laugh-wink"></i>
+    <div class="sidebar-brand-icon rotate-n-0">
+    <img src="{{ asset('img/logoRB-removebg-preview.png') }}" alt="Group Logo" width="130px" height="auto" class="brand-image img-circle elevation-1" style="opacity: .8">
     </div>
-    <div class="sidebar-brand-text mx-3">Rb Admin <sup>2</sup></div>
+    <div class="sidebar-brand-text mx-3">Rb Admin <sup></sup></div>
   </a>
+  <!-- <a href="{{ route('home') }}" class="brand-link">
+        <img src="{{ asset('AdminLTE/dist/img/Group 1.png') }}" alt="Group Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-bold text-dark">Sahabat Tani</span>
+    </a> -->
 
   <!-- Divider -->
   <hr class="sidebar-divider my-0">
@@ -60,7 +64,11 @@
 
   @if(Auth::user()->level == 'admin')
   <li class="nav-item">
+<<<<<<< HEAD
     <a class="nav-link" href="{{route('pesanan')}}">
+=======
+    <a class="nav-link" href="{{ route('pesanan') }}">
+>>>>>>> cd53577fff24aee79a9a024be2c165f55eab1f11
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Pesanan</span></a>
   </li>
@@ -69,7 +77,7 @@
 
   @if(Auth::user()->level == 'owner')
   <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="{{ route('laporan.penjualan') }}">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Laporan Penjualan</span></a>
   </li>

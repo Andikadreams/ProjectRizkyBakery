@@ -16,12 +16,13 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="nama">Nama Kategori</label>
-                        <input type="text" class="form-control" id="nama" name="nama"
+                        <input type="text" required="required" class="form-control" id="nama" name="nama"
                             value="{{ isset($kategori) ? $kategori->nama : '' }}">
                     </div>
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Simpan</button>
+                    <a href="{{ route('kategori') }}" class="btn btn-danger" role="button" aria-disabled="true" style="margin-left:5px">Kembali</a>
                 </div>
             </div>
         </div>

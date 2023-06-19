@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Produk;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProdukController extends Controller
 {
@@ -15,8 +17,7 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $produk = Produk::get();
-
+        $produk = Produk::paginate(5);
 		return view('layouts.admin.produk.index', ['data' => $produk]);
     }
 
@@ -51,10 +52,15 @@ class ProdukController extends Controller
 			'harga' => $request->harga,
 			'jumlah' => $request->jumlah,
 		];
-
-		Produk::create($data);
-
-		return redirect()->route('produk');
+        $validate = Produk::where('kode_produk', $request->kode_produk)->first();
+        if($validate){
+            // Alert::error('Gagal Menambah Produk','Kode Produk Tidak Boleh Sama!');
+            return redirect()->route('produk')->with('error','Kode Produk Tidak Boleh Sama!');
+        }
+        else{
+            Produk::create($data);
+		    return redirect()->route('produk')->with('success','Berhasil Menambahkan Produk');
+        }
     }
 
     /**
@@ -65,7 +71,8 @@ class ProdukController extends Controller
      */
     public function show($id)
     {
-        //
+        $produk = Produk::find($id);
+        return view('layouts.admin.produk.detail', compact('produk'));
     }
 
     /**
@@ -92,8 +99,16 @@ class ProdukController extends Controller
     {
         $produk = Produk::find($id);
         $foto = '';
-        if ($request->file('image')) {
-            $foto = $request->file('image')->store('image', 'public');
+        // if ($request->hasFile('image')) {
+        //     $foto = $request->file('image')->store('image', 'public');
+        // }
+        if ($request->hasFile('image')) {
+            if ($produk->foto_produk && file_exists(storage_path('app/public/' . $produk->foto_produk))) {
+                Storage::delete('public/' . $produk->foto_produk);
+            }
+            $foto = $request->file('image')->store('images', 'public');
+        } else {
+            $foto = $produk->foto_produk;
         }
         $data = [
 			'kode_produk' => $request->kode_produk,
@@ -105,8 +120,7 @@ class ProdukController extends Controller
 		];
 
 		Produk::find($id)->update($data);
-
-		return redirect()->route('produk');
+		return redirect()->route('produk')->with('success','Berhasil Mengubah Data Produk');
     }
 
     /**
@@ -118,6 +132,12 @@ class ProdukController extends Controller
     public function destroy($id)
     {
         Produk::find($id)->delete();
-		return redirect()->route('produk');
+		return redirect()->route('produk')->with('success','Berhasil Menghapus Data Produk');
+    }
+
+    public function search(Request $request){
+        $keyword = $request->search;
+        $produk = Produk::where('nama_produk', 'like', "%" . $keyword . "%")->paginate(5);
+        return view('layouts.admin.produk.index', ['data' => $produk])->with('i', (request()->input('page', 1) - 1) * 5);
     }
 }
