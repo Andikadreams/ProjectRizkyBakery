@@ -140,6 +140,12 @@ Route::group(['middleware' => ['auth', 'level:pelanggan']], function () {
 	Route::get('riwayat', [RiwayatController::class, 'index'])->name('riwayat');
 	route::get('riwayat/{id}', [RiwayatController::class, 'detail'])->name('riwayat_detail');
 	Route::post('shop', [ShopController::class, 'search'])->name('search');
+
+	Route::controller(ProfileController::class)->prefix('profile')->group(function (){
+		Route::get('', 'showPelanggan')->name('profile.pelanggan');
+		Route::get('edit/{id}', 'editPelanggan')->name('profile.edit.pelanggan');
+		Route::post('edit/{id}', 'updatePelanggan')->name('profile.create.edit.pelanggan');
+	});
 });
 
 Route::get('auth/google', [LoginWithGoogleController::class, 'redirectToGoogle']);

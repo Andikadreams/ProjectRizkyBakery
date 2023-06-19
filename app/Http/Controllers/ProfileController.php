@@ -42,4 +42,36 @@ class ProfileController extends Controller
             User::find($id)->update($data);
             return redirect()->route('profile');
     }
+
+    public function showPelanggan()
+    {
+        $user = User::get();
+        return view('layouts.user.profile.index', compact('user'));
+    }
+    
+    public function editPelanggan($id){
+        $user = User::find($id);
+		return view('layouts.user.profile.form', compact('user'));
+    }
+
+    public function updatePelanggan(Request $request, $id){
+        $user = User::find($id);
+        $foto = '';
+            if ($request->hasFile('image')) {
+                if ($user->foto && file_exists(storage_path('app/public/' . $user->foto))) {
+                    Storage::delete('public/' . $user->foto);
+                }
+                $foto = $request->file('image')->store('images', 'public');
+            } else {
+                $foto = $user->foto;
+            }
+            $data = [
+                'alamat' => $request->alamat,
+                'foto' => $foto,
+                'no_hp' => $request->no_hp,
+                'tgl_lahir' => $request->tgl_lahir,
+            ];
+            User::find($id)->update($data);
+            return redirect()->route('profile.pelanggan');
+    }
 }

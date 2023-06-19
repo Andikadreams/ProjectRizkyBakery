@@ -1,3 +1,4 @@
+@if(Auth::user()->level == 'admin'||Auth::user()->level == 'owner')
 <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
@@ -7,10 +8,6 @@
     </div>
     <div class="sidebar-brand-text mx-3">Rb Admin <sup></sup></div>
   </a>
-  <!-- <a href="{{ route('home') }}" class="brand-link">
-        <img src="{{ asset('AdminLTE/dist/img/Group 1.png') }}" alt="Group Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-bold text-dark">Sahabat Tani</span>
-    </a> -->
 
   <!-- Divider -->
   <hr class="sidebar-divider my-0">
@@ -88,3 +85,4 @@
   </div>
 
 </ul>
+@endif
