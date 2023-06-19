@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\PesananController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\PesananController;
@@ -82,12 +81,6 @@ All Admin Routes List
 --------------------------------------------*/
 Route::group(['middleware' => ['auth', 'level:admin']], function () {
 
-<<<<<<< HEAD
-	// Route::get('/dashboard', function(){
-	//     return view ('dashboard_admin');
-	// })->name('dashboard');  
-=======
->>>>>>> cd53577fff24aee79a9a024be2c165f55eab1f11
 	Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('dashboard');
 	Route::controller(KategoriController::class)->prefix('kategori')->group(function () {
 		Route::get('', 'index')->name('kategori');
@@ -111,8 +104,6 @@ Route::group(['middleware' => ['auth', 'level:admin']], function () {
 		Route::get('hapus/{id}', 'destroy')->name('produk.destroy');
 		Route::get('/search','search')->name('produk.search');
 	});
-<<<<<<< HEAD
-=======
 
 	Route::controller(PesananController::class)->prefix('pesanan')->group(function (){
 		Route::get('', 'pesananMasuk')->name('pesanan');
@@ -126,7 +117,6 @@ Route::group(['middleware' => ['auth', 'level:admin']], function () {
 		Route::post('edit/{id}', 'update')->name('profile.create.edit');
 	});
 	
->>>>>>> cd53577fff24aee79a9a024be2c165f55eab1f11
 });
 
 /*------------------------------------------
@@ -134,7 +124,6 @@ Route::group(['middleware' => ['auth', 'level:admin']], function () {
 All Normal Users Routes List
 --------------------------------------------
 --------------------------------------------*/
-<<<<<<< HEAD
 Route::group(['middleware' => ['auth', 'level:pelanggan']], function () {
 
 	// Route::get('/home', function(){
@@ -172,19 +161,3 @@ Route::post('register/simpan', [AuthController::class, 'registerSimpan'])->name(
 
 
 route::get('pesanan', [PesananController::class, 'index'])->name('pesanan');
-=======
-Route::group(['middleware' => ['auth','level:pelanggan']], function(){
-    
-	Route::get('/home', [App\Http\Controllers\HomeController::class, 'pelangganHome'])->name('home');
-	Route::get('shop', [ShopController::class, 'index'])->name('shop');
-	Route::get('pesan/{id}', [OrderController::class,'index'])->name('pesan');
-	Route::post('pesan/{id}', [OrderController::class,'pesan'])->name('tambahKeranjang');
-	Route::get('check-out', [OrderController::class,'check_out'])->name('checkout');
-	Route::delete('check-out/{id}', [OrderController::class,'delete'])->name('delete');
-	Route::get('konfirmasi-check-out',[OrderController::class,'konfirmasi'])->name('konfirmasi');
-	Route::get('riwayat',[RiwayatController::class, 'index'])->name('riwayat');
-	route::get('riwayat/{id}',[RiwayatController::class, 'detail'])->name('riwayat_detail');
-	
-});
-
->>>>>>> cd53577fff24aee79a9a024be2c165f55eab1f11
