@@ -23,7 +23,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="kode_kategori">Kode Kategori</label>
-                        <input type="number" required="required" class="form-control" id="kode_kategori" name="kode_kategori"
+                        <input type="text" required="required" class="form-control" id="kode_kategori" name="kode_kategori"
                             value="{{ isset($kategori) ? $kategori->kode_kategori : '' }}">
                     </div>
                 </div>
