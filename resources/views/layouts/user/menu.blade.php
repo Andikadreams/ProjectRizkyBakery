@@ -45,14 +45,14 @@
                 </div>
 
                 <div class="row gy-5">
-                    @foreach ($produks as $produk)
+                    @foreach ($produks->take(6) as $produk)
                     <div class="col-lg-4 menu-item">
                         <a href="" class="glightbox"><img src="{{ asset('storage/'.$produk->foto_produk) }}" 
                         class="menu-img img-fluid" alt="" style="height: 300px; object-fit: cover; width: 100%; object-position:bottom;border-radius:10%"></a>
                         <h4>{{ $produk->nama_produk }}</h4>
-                        <p class="ingredients">
+                        <!-- <p class="ingredients">
                             Must Try This 1
-                        </p>
+                        </p> -->
                         <p class="price">
                             Rp {{ number_format($produk->harga) }}
                         </p>
