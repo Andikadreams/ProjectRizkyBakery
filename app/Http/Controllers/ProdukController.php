@@ -52,14 +52,15 @@ class ProdukController extends Controller
 			'harga' => $request->harga,
 			'jumlah' => $request->jumlah,
 		];
-        $validate = Produk::where('kode_produk', $request->kode_produk)->first();
-        if($validate){
-            // Alert::error('Gagal Menambah Produk','Kode Produk Tidak Boleh Sama!');
-            return redirect()->route('produk')->with('error','Kode Produk Tidak Boleh Sama!');
-        }
-        else{
+        $validateKode = Produk::where('kode_produk', $request->kode_produk)->first();
+        $validateNama = Produk::where('nama_produk', $request->nama_produk)->first();
+        if ($validateKode) {
+            return redirect()->route('produk')->with('error', 'Kode Produk Tidak Boleh Sama!');
+        } elseif ($validateNama) {
+            return redirect()->route('produk')->with('error', 'Nama Produk Tidak Boleh Sama!');
+        } else {
             Produk::create($data);
-		    return redirect()->route('produk')->with('success','Berhasil Menambahkan Produk');
+            return redirect()->route('produk')->with('success', 'Berhasil Menambah Produk!');
         }
     }
 
@@ -99,9 +100,12 @@ class ProdukController extends Controller
     {
         $produk = Produk::find($id);
         $foto = '';
-        // if ($request->hasFile('image')) {
-        //     $foto = $request->file('image')->store('image', 'public');
-        // }
+        $validateKode = Produk::where('kode_produk', $request->kode_produk)
+            ->where('id', '!=', $id)
+            ->exists();
+        $validateNama = Produk::where('nama_produk', $request->nama_produk)
+            ->where('id', '!=', $id)
+            ->exists();
         if ($request->hasFile('image')) {
             if ($produk->foto_produk && file_exists(storage_path('app/public/' . $produk->foto_produk))) {
                 Storage::delete('public/' . $produk->foto_produk);
@@ -118,9 +122,18 @@ class ProdukController extends Controller
 			'harga' => $request->harga,
 			'jumlah' => $request->jumlah,
 		];
-
-		Produk::find($id)->update($data);
-		return redirect()->route('produk')->with('success','Berhasil Mengubah Data Produk');
+        if ($produk->kode_produk == $request->kode_produk && $produk->nama_produk == $request->nama_produk 
+        && $produk->harga == $request->harga && $produk->jumlah == $request->jumlah && $produk->foto_produk == $foto && $produk->id_kategori == $request->id_kategori) {
+            return redirect()->route('produk')->with('info', 'Tidak Ada Perubahan Pada Data Produk.');
+        } 
+        else if ($validateKode) {
+            return redirect()->route('produk')->with('error', 'Kode Produk Tidak Boleh Sama!');
+        } else if ($validateNama) {
+            return redirect()->route('produk')->with('error', 'Nama Produk Tidak Boleh Sama!');
+        } else {
+                Produk::find($id)->update($data);
+                return redirect()->route('produk')->with('success', 'Berhasil Mengedit Produk!');
+            }
     }
 
     /**
@@ -137,7 +150,11 @@ class ProdukController extends Controller
 
     public function search(Request $request){
         $keyword = $request->search;
-        $produk = Produk::where('nama_produk', 'like', "%" . $keyword . "%")->paginate(5);
+        $produk = Produk::join('kategori', 'produk.id_kategori', '=', 'kategori.id')
+            ->where('produk.nama_produk', 'like', "%" . $keyword . "%")
+            ->orWhere('produk.kode_produk', 'like', "%" . $keyword . "%")
+            ->orWhere('kategori.nama', 'like', "%" . $keyword . "%")
+            ->paginate(5);
         return view('layouts.admin.produk.index', ['data' => $produk])->with('i', (request()->input('page', 1) - 1) * 5);
     }
 }

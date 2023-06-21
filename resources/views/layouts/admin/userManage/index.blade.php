@@ -25,11 +25,11 @@
         <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
     </div>
     <div class="card-body">
-        <a href="{{ route('user.create') }}" class="btn btn-primary mb-3">Tambah User</a>
+        <a href="{{ route('user.create') }}" class="btn btn-primary mb-3 ml-3">Tambah User</a>
         <a class="btn btn-success right mb-3" href="{{ route('user') }}">Tampilkan Semua User</a>
         <!-- Topbar Search -->
         <form class="form-left my-2" method="get" action="{{ route('user.search') }}">
-            <div class="input-group">
+            <div class="input-group mb-3 col-12 col-sm-8 col-md-6">
                 <input type="text" name="search" class="form-control w-50 d-inline" id="search"
                     placeholder="Masukkan Nama">
                 <button type="submit" class="btn btn-primary mb-1">Cari</button>

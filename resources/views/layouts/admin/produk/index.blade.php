@@ -21,19 +21,28 @@
     @endphp
 </div>
 @endif
+
+@if(Session::has('info'))
+<div class="alert alert-info">
+    {{ Session::get('info') }}
+    @php
+    Session::forget('info');
+    @endphp
+</div>
+@endif
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Data Produk</h6>
     </div>
     <div class="card-body">
         @if (auth()->user()->level == 'admin')
-        <a href="{{ route('produk.create') }}" class="btn btn-primary mb-3">Tambah Produk</a>
+        <a href="{{ route('produk.create') }}" class="btn btn-primary mb-3 ml-3">Tambah Produk</a>
         <a class="btn btn-success right mb-3" href="{{ route('produk') }}">Semua Produk</a>
         @endif
         <form class="form-left my-2" method="get" action="{{ route('produk.search') }}">
-            <div class="input-group">
+            <div class="input-group mb-3 col-12 col-sm-8 col-md-6" >
                 <input type="text" name="search" class="form-control w-50 d-inline" id="search"
-                    placeholder="Masukkan Nama">
+                    placeholder="Masukkan Pencarian">
                 <button type="submit" class="btn btn-primary mb-1">Cari</button>
                 <div class="input-group-append">
                 </div>
@@ -75,7 +84,7 @@
                 </tbody>
             </table>
             <div class="my-2" width="500px">
-                {{$data->links('pagination::bootstrap-5')}}
+                {{$data->withQueryString()->links('pagination::bootstrap-5')}}
             </div>
         </div>
     </div>

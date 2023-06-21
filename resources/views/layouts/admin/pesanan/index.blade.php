@@ -8,10 +8,9 @@
         <h6 class="m-0 font-weight-bold text-primary">Data Pesanan</h6>
     </div>
     <div class="card-body">
-    <a class="btn btn-success right mb-3" href="{{ route('pesanan') }}">Tampilkan Semua Pesanan</a>
-    <form class="form-left my-2"
-            method="get" action="{{ route('pesanan.search') }}">
-            <div class="input-group">
+    <a class="btn btn-success left mb-3 ml-3" href="{{ route('pesanan') }}">Tampilkan Semua Pesanan</a>
+    <form class="form-left my-2" method="get" action="{{ route('pesanan') }}">
+            <div class="input-group mb-3 col-12 col-sm-8 col-md-6">
             <input type="text" name="search" class="form-control w-50 d-inline" id="search" placeholder="Masukkan Nama">
                         <button type="submit" class="btn btn-primary mb-1">Cari</button>
                 <div class="input-group-append">
@@ -19,8 +18,8 @@
             </div>
         </form>
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            <thead>
+            <table class="table table-bordered" id="dataTable" widtd="100%" cellspacing="0">
+            <tdead>
                     <tr>
                         <th>Id Transaksi</th>
                         <th>Nama Pembeli</th>
@@ -30,37 +29,28 @@
                         <th>Waktu Pemesanan</th>
                         <th>Aksi</th>
                     </tr>
-                </thead>
+                </tdead>
                 <tbody>
                     @if($orderan = '1')
-                    @foreach ($orderDetail as $order_details)
+                    @foreach($orderDetail as $data)
                     <tr>
-                        <th>{{$order_details->order_id}}</th>
-                        @foreach ($order as $orders)
-                                @foreach ($user as $users)
-                                @if ($orders->id == $order_details->order_id)    
-                                    @if ($users->id == $orders->user_id)
-                                    <td>{{ $users->name }}</td>
-                                    @endif
-                                @endif
-                                @endforeach
-                            @endforeach 
-                            @foreach ($produk as $produks)
-                            @if ($produks->id == $order_details->produk_id)
-                            <td>{{ $produks->nama_produk }}</td>
-                            @endif
-                            @endforeach
-                        <td>{{ $order_details->jumlah }}</td>
-                        <td>{{ $order_details->jumlah_harga }}</td>
-                        <td>{{ $order_details->created_at }}</td>
+                        <td>{{$data->order_id}}</td>
+                        <td>{{$data->order->user->name}}</td>
+                        <td>{{$data->produk->nama_produk}}</td>
+                        <td>{{$data->jumlah}}</td>
+                        <td>{{$data->jumlah_harga}}</td>
+                        <td>{{$data->order->tanggal}}</td>
                         <td>
-                            <a href="{{ route('pesanan.detail', $order_details->id) }}" class="btn btn-info">Detail</a>                        </td>
+                            <a href="{{ route('pesanan.detail', $data->id) }}" class="btn btn-info">Detail</a>
+                        </td>
                     </tr>
                     @endforeach
-                    @else
                     @endif
                 </tbody>
             </table>
+            <div class="my-2" width="500px">
+                {{$orderDetail->withQueryString()->links('pagination::bootstrap-5')}}
+            </div>
         </div>
     </div>
 </div>

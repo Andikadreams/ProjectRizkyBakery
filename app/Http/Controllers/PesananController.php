@@ -13,48 +13,63 @@ use Illuminate\Support\Facades\View;
 
 class PesananController extends Controller
 {
-    public function pesananMasuk(){
-        $orderan = Order::get('status');
-        $order = Order::all();
-        $user = User::all();
-        $produk = Produk::all();
-        $orderDetail = OrderDetail::all();
-
-    	return view('layouts.admin.pesanan.index', compact('order','user','produk','orderDetail','orderan'));
+    public function index(Request $request){
+        $keyword = $request->search;
+        $orderDetail = OrderDetail::with('order')
+                                ->where('order_id', 'LIKE', $keyword)
+                                ->orWhereHas('order', function($query) use($keyword) {
+                                    $query->where('tanggal','LIKE', $keyword);
+                                })->orWhereHas('order', function($query) use($keyword) {
+                                    $query->where('tanggal','LIKE', $keyword);
+                                })
+                                ->paginate(5);
+        return view('layouts.admin.pesanan.index',compact('orderDetail'));     
     }
+
+    public function indexPenjualan(Request $request){
+        $keyword = $request->search;
+        $count_penjualan = OrderDetail::sum('jumlah_harga');
+        $orderDetail = OrderDetail::with('order')
+                                ->where('order_id', 'LIKE', $keyword)
+                                ->orWhereHas('order', function($query) use($keyword) {
+                                    $query->where('tanggal','LIKE', $keyword);
+                                })->orWhereHas('order', function($query) use($keyword) {
+                                    $query->where('tanggal','LIKE', $keyword);
+                                })
+                                ->paginate(5);
+        return view('layouts.admin.laporan.index',compact('orderDetail','count_penjualan'));     
+    }
+
+    public function cetakPertanggal($start_date, $end_date){
+        $start_datetime = $start_date . ' 00:00:00';
+        $end_datetime = $end_date . ' 23:59:59';
+        $orderDetail = OrderDetail::with('order')->whereBetween('created_at',[$start_datetime, $end_datetime])->get();
+        $view = View::make('layouts.admin.laporan.cetakpertanggal', compact('orderDetail'));
+        $html = $view->render();
+
+        $pdf = app(PDF::class);
+        $pdf->loadHTML($html);
+
+        return $pdf->stream('Laporan-Penjualan-pertanggal.pdf');
+    }
+
 
     public function show($id){
         $orderDetail = OrderDetail::find($id);
         return view('layouts.admin.pesanan.detail', compact('orderDetail'));
     }
 
-    public function laporanPenjualan(){
-        $orderan = Order::get('status');
-        $order = Order::all();
-        $user = User::all();
-        $produk = Produk::all();
-        $orderDetail = OrderDetail::all();
-        return view('layouts.admin.laporan.index', compact('order','user','produk','orderDetail','orderan'));
-    }
+    // public function laporanPenjualan(){
+    //     $count_penjualan= OrderDetail::sum('jumlah_harga');
+    //     $orderDetail = OrderDetail::with('order')->paginate(5);
+    //     return view('layouts.admin.laporan.index',compact('orderDetail', 'count_penjualan'));
+    // }
 
     public function cetakLaporan(){
-        // $orderan = Order::get('status');
-        // $order = Order::get('id');
-        // $produk = Produk::get();
-        // $orderDetail = OrderDetail::get();
-        // $tanggal = Order::get('tanggal');
-        // $namaPelanggan = Order::get('user_id'); 
-        // $pdf = PDF::loadView('layouts.admin.laporan.cetak', compact('order', 'produk', 'orderDetail', 'tanggal', 'namaPelanggan'));
-        // return $pdf->download('Laporan-Penjualan.pdf');
-        // return view('layouts.admin.laporan.cetak', compact('order','produk','orderDetail','tanggal','namaPelanggan'));
 
-        $order = Order::get('id');
-        $produk = Produk::get();
         $orderDetail = OrderDetail::get();
-        $tanggal = Order::get('tanggal');
-        $namaPelanggan = Order::get('user_id');
 
-        $view = View::make('layouts.admin.laporan.cetak', compact('order', 'produk', 'orderDetail', 'tanggal', 'namaPelanggan'));
+        $view = View::make('layouts.admin.laporan.cetak', compact('orderDetail'));
         $html = $view->render();
 
         $pdf = app(PDF::class);
