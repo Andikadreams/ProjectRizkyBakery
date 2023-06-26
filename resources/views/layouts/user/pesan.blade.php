@@ -1,6 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
+
+{{-- manggil sweet alert --}}
+@include('sweetalert::alert')
+
+@if(Session::has('success'))
+<div class="alert alert-success">
+    {{ Session::get('success') }}
+    @php
+    Session::forget('success');
+    @endphp
+</div>
+@endif
+@if(Session::has('error'))
+<div class="alert alert-danger">
+    {{ Session::get('error') }}
+    @php
+    Session::forget('error');
+    @endphp
+</div>
+@endif
+
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -52,10 +73,10 @@
                                             <td>Jumlah Pesan</td>
                                             <td>:</td>
                                             <td>
-                                                <form method="post" action="{{ url('pesan') }}/{{ $produk->id }}">
+                                                <form method="post" action="{{ route('process', ['id'=>$produk->id]) }}">
                                                     @csrf
                                                     <input type="text" name="jumlah_pesan" class="form-control"
-                                                        required="">
+                                                        required="" placeholder="Masukkan Quantity">
                                                     <button type="submit" class="btn btn-primary mt-2"><i
                                                             class="fa fa-shopping-cart"></i> Masukkan Keranjang</button>
                                                 </form>
@@ -65,10 +86,10 @@
                                             <td>Rating</td>
                                             <td>:</td>
                                             <td>
-                                                <form method="post" action="{{ route('rate', ['id'=>$produk->id]) }}">
+                                                <form method="post" action="{{ route('process', ['id'=>$produk->id]) }}" >
                                                     @csrf
                                                     <input type="text" name="rate" class="form-control"
-                                                        required="">
+                                                        required="" placeholder="Masukkan Rating (Edit Rating disini)">
                                                     <button type="submit" class="btn btn-primary mt-2"><i
                                                             class="bi bi-star"></i> Beri Rating </button>
                                                 </form>

@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rating', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('user_id');
-            $table->integer('produk_id');
-            $table->float('rate')->nullable();
+        Schema::create('bank', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama_bank');
+            $table->integer('no_rekening');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rating');
+        Schema::dropIfExists('bank');
     }
 };

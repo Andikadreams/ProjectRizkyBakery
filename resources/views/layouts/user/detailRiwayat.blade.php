@@ -1,5 +1,26 @@
 @extends('layouts.app')
 @section('content')
+
+{{-- manggil sweet alert --}}
+@include('sweetalert::alert')
+
+@if(Session::has('success'))
+<div class="alert alert-success">
+    {{ Session::get('success') }}
+    @php
+    Session::forget('success');
+    @endphp
+</div>
+@endif
+@if(Session::has('error'))
+<div class="alert alert-danger">
+    {{ Session::get('error') }}
+    @php
+    Session::forget('error');
+    @endphp
+</div>
+@endif
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -18,7 +39,13 @@
             <div class="card">
                 <div class="card-body">
                     <h3>Sukses Check Out</h3>
-                    <h5>Pesanan anda sudah sukses dicheck out selanjutnya untuk pembayaran silahkan transfer di rekening <strong>Bank BRI Nomer Rekening : 32113-821312-123</strong> dengan nominal : <strong>Rp. {{ number_format($order->kode+$order->jumlah_harga) }}</strong></h5>
+                    <h5>Pesanan anda sudah sukses dicheck out selanjutnya untuk pembayaran silahkan transfer di no rekening berikut :</h5>
+                    <br>
+                    @foreach ($bank as $banks)
+                    <h5><strong>{{($banks->nama_bank)}} Nomer Rekening : {{$banks->no_rekening}}</strong> dengan nominal : <strong>Rp. {{ number_format($order->kode+$order->jumlah_harga) }}</strong></h5>
+                    @endforeach
+                    <br>
+                    <h5>Tunjukan bukti pembayaran pada saat mengambil kue !!!</h5>
                 </div>
             </div>
             <div class="card mt-2">
@@ -67,13 +94,12 @@
                              <tr>
                                 <td colspan="5" ><strong>Total yang harus ditransfer :</strong></td>
                                 <td ><strong>Rp. {{ number_format($order->kode+$order->jumlah_harga) }}</strong></td>
-                                
                             </tr>
                         </tbody>
                     </table>
                     @endif
-
                 </div>
+                <a type="button" class="btn btn-outline-success d-flex justify-content-center" href="{{ route('riwayat.export', ['id' => $order->id]) }}">Export to PDF</a>
             </div>
         </div>
         

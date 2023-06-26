@@ -132,13 +132,13 @@ Route::group(['middleware' => ['auth', 'level:pelanggan']], function () {
 	Route::get('/home', [App\Http\Controllers\HomeController::class, 'pelangganHome'])->name('home');
 	Route::get('shop', [ShopController::class, 'index'])->name('shop');
 	Route::get('pesan/{id}', [OrderController::class, 'index'])->name('pesan');
-	Route::post('pesan/{id}', [OrderController::class, 'pesan'])->name('tambahKeranjang');
-	Route::post('pesan/{id}', [OrderController::class, 'rating'])->name('rate');
+	Route::post('pesan/{id}', [OrderController::class, 'process'])->name('process');
 	Route::get('check-out', [OrderController::class, 'check_out'])->name('checkout');
 	Route::delete('check-out/{id}', [OrderController::class, 'delete'])->name('delete');
 	Route::get('konfirmasi-check-out', [OrderController::class, 'konfirmasi'])->name('konfirmasi');
 	Route::get('riwayat', [RiwayatController::class, 'index'])->name('riwayat');
 	route::get('riwayat/{id}', [RiwayatController::class, 'detail'])->name('riwayat_detail');
+	Route::get('riwayat/{id}/export', [RiwayatController::class, 'exportToPDF'])->name('riwayat.export');
 	Route::post('shop', [ShopController::class, 'search'])->name('search');
 });
 

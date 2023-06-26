@@ -10,7 +10,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class ShopController extends Controller
 {
     public function index(){
-        $produk = Produk::paginate(6);
+        $produk = Produk::paginate(2);
         $rating = Rating::get();
         return view('layouts.user.shop', compact('produk', 'rating'));
     }

@@ -1,5 +1,26 @@
 @extends('layouts.app')
 @section('content')
+
+{{-- manggil sweet alert --}}
+@include('sweetalert::alert')
+
+@if(Session::has('success'))
+<div class="alert alert-success">
+    {{ Session::get('success') }}
+    @php
+    Session::forget('success');
+    @endphp
+</div>
+@endif
+@if(Session::has('error'))
+<div class="alert alert-danger">
+    {{ Session::get('error') }}
+    @php
+    Session::forget('error');
+    @endphp
+</div>
+@endif
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
