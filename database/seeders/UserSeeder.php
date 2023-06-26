@@ -19,23 +19,58 @@ class UserSeeder extends Seeder
         $users = [
             [
                 'name' => 'Alfi Surya Pratama',
-                'email' => 'alfisuryap7@gmail.com',
+                'email' => 'suryapelanggan@gmail.com',
                 'password' => Hash::make('password'),
                 'level' => 'pelanggan',
             ],
             [
-                'name' => 'Surya Tama',
-                'email' => 'alfi.spratama7@yahoo.com',
+                'name' => 'Surya',
+                'email' => 'suryaadmin@gmail.com',
                 'password' => Hash::make('password'),
                 'level' => 'admin',
             ],
             [
-                'name' => 'Yaya',
-                'email' => '2141720075@student.polinema.ac.id',
+                'name' => 'Tama',
+                'email' => 'suryaowner@gmail.com',
                 'password' => Hash::make('password'),
                 'level' => 'owner',
             ],
-
+            [
+                'name' => 'Andika Ainur Wibowo',
+                'email' => 'andikapelanggan@gmail.com',
+                'password' => Hash::make('password'),
+                'level' => 'pelanggan',
+            ],
+            [
+                'name' => 'Andika Ainur',
+                'email' => 'andikaadmin@gmail.com',
+                'password' => Hash::make('password'),
+                'level' => 'admin',
+            ],
+            [
+                'name' => 'Andika',
+                'email' => 'andikaowner@gmail.com',
+                'password' => Hash::make('password'),
+                'level' => 'owner',
+            ],
+            [
+                'name' => 'Bagus Dwi Putranto',
+                'email' => 'baguspelanggan@gmail.com',
+                'password' => Hash::make('password'),
+                'level' => 'pelanggan',
+            ],
+            [
+                'name' => 'Bagus Dwi',
+                'email' => 'bagusadmin@gmail.com',
+                'password' => Hash::make('password'),
+                'level' => 'admin',
+            ],
+            [
+                'name' => 'Bagus',
+                'email' => 'bagusowner@gmail.com',
+                'password' => Hash::make('password'),
+                'level' => 'owner',
+            ],
         ];
 
         DB::table('users')->insert($users);

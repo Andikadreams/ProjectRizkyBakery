@@ -58,7 +58,7 @@
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td>
-                                    <img src="{{ $order_detail->produk->foto_produk }}" width="100" alt="..." style="height: 150px; object-fit: cover; width: 100%; object-position:bottom">
+                                    <img src="{{ asset('storage/foto_produk/'.$order_detail->produk->foto_produk) }}" width="100" alt="...">
                                 </td>
                                 <td>{{ $order_detail->produk->nama_produk }}</td>
                                 <td>{{ $order_detail->jumlah }}</td>
