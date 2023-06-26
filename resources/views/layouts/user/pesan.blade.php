@@ -89,7 +89,7 @@
                                                 <form method="post" action="{{ route('process', ['id'=>$produk->id]) }}" >
                                                     @csrf
                                                     <input type="text" name="rate" class="form-control"
-                                                        required="" placeholder="Masukkan Rating (Edit Rating disini)">
+                                                        required="" placeholder="Masukkan Rating 1-5 (Edit Rating disini)">
                                                     <button type="submit" class="btn btn-primary mt-2"><i
                                                             class="bi bi-star"></i> Beri Rating </button>
                                                 </form>

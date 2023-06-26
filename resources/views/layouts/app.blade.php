@@ -26,15 +26,6 @@
 <body>
     <div id="app">
 
-        <?php
-        $pesanan_utama = \App\Models\Order::where('user_id', Auth::user()->id)
-            ->where('status', 0)
-            ->first();
-        if (!empty($pesanan_utama)) {
-            $notif = \App\Models\OrderDetail::where('produk_id', $pesanan_utama->id)->count();
-        }
-        ?>
-
         @include('layouts.user.shopNavbar')
 
         <main class="py-4" style="margin-top: 80px">

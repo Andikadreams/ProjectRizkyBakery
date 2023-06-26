@@ -21,25 +21,24 @@
             background-color: #f2f2f2;
         }
         
-        /* Gaya untuk gambar */
-        img {
-            max-width: 100px;
-            height: auto;
-        }
-        
         /* Gaya untuk teks yang dicetak tebal */
         strong {
             font-weight: bold;
+        }
+
+        h1, h3 {
+            text-align: center;
         }
     </style>
 </head>
 
 <body>
+    <h1>Nota Pembayaran</h1>
+    <h3>Toko Kue Rizky Bakery</h3>
     <table class='table table-bordered'>
         <thead>
             <tr>
                 <th>No</th>
-                <th>Gambar</th>
                 <th>Nama Barang</th>
                 <th>Jumlah</th>
                 <th>Harga</th>
@@ -52,9 +51,6 @@
             @foreach($order_details as $order_detail)
             <tr>
                 <td>{{ $no++ }}</td>
-                <td>
-                    <img src="{{ $order_detail->produk->foto_produk }}" width="100" alt="...">
-                </td>
                 <td>{{ $order_detail->produk->nama_produk }}</td>
                 <td>{{ $order_detail->jumlah }}</td>
                 <td >Rp. {{ number_format($order_detail->produk->harga) }}</td>
@@ -64,17 +60,17 @@
             @endforeach
 
             <tr>
-                <td colspan="5" ><strong>Total Harga :</strong></td>
+                <td colspan="4" ><strong>Total Harga :</strong></td>
                 <td ><strong>Rp. {{ number_format($order->jumlah_harga) }}</strong></td>
                 
             </tr>
             <tr>
-                <td colspan="5" ><strong>Kode Unik :</strong></td>
+                <td colspan="4" ><strong>Kode Unik :</strong></td>
                 <td ><strong>{{ number_format($order->kode) }}</strong></td>
                 
             </tr>
              <tr>
-                <td colspan="5" ><strong>Total yang harus ditransfer :</strong></td>
+                <td colspan="4" ><strong>Total yang harus ditransfer :</strong></td>
                 <td ><strong>Rp. {{ number_format($order->kode+$order->jumlah_harga) }}</strong></td>
                 
             </tr>

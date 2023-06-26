@@ -43,7 +43,6 @@
                             <tr>
                                 <th>No</th>
                                 <th>Tanggal</th>
-                                <th>Status</th>
                                 <th>Jumlah Harga</th>
                                 <th>Aksi</th>
                             </tr>
@@ -54,13 +53,6 @@
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $orders->tanggal }}</td>
-                                <td>
-                                    @if($orders->status == 1)
-                                    Sudah Dibayar
-                                    @else
-                                    Belum Dibayar 
-                                    @endif
-                                </td>
                                 <td>Rp. {{ number_format($orders->jumlah_harga+$orders->kode) }}</td>
                                 <td>
                                     <a href="{{ url('riwayat') }}/{{ $orders->id }}" class="btn btn-primary"><i class="fa fa-info"></i> Detail</a>

@@ -3,13 +3,14 @@
 @section('title', 'Profile')
 
 @section('contents')
+
 <section class="vh-50" style="background-color: #f4f5f7;">
     <div class="container py-5 h-50">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-lg-6 mb-4 mb-lg-0">
                 <div class="card mb-3" style="border-radius: .5rem;">
                     <div class="row g-0">
-                        <div class="col-md-4 gradient-custom text-center text-white"
+                        <div class="col-md-4 gradient-custom text-center text-white" 
                             style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
                             <img src="{{asset('storage/'.auth()->user()->foto)}}"
                                 alt="Avatar" class="img-fluid my-5" style="width: 100px;object-fit:cover;height:auto;border-radius:50%;overflow:hidden;">
@@ -31,8 +32,10 @@
                             <a href="{{route ('profile.create.edit.pelanggan',Auth::user()->id)}}">
                             <i class="far fa-edit mb-5">Edit</i>
                             </a>
+                            <br>
                             <a href="{{route('home')}}">
-                            <i class="far fa-edit mb-5" style="margin-left: 5px;">Back</i>
+                                <button class="btn btn-primary">Back</button>
+                            </button>
                             </a>
                             @endif
                         </div>

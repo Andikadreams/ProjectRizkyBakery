@@ -150,6 +150,6 @@ class OrderController extends Controller
             $produk->update();
         }
 
-        return redirect('riwayat/' . $order_id)->with('success', 'Orer sukses silahkan lanjut ke pembayaran');
+        return redirect('riwayat/' . $order_id)->with('success', 'Order sukses silahkan lanjut ke pembayaran');
     }
 }

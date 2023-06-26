@@ -13,6 +13,7 @@ class Bank extends Model
 
 	protected $fillable = [
         'id',
+        'nasabah',
         'nama_bank',
         'no_rekening'
     ];

@@ -39,12 +39,13 @@
             <div class="card">
                 <div class="card-body">
                     <h3>Sukses Check Out</h3>
-                    <h5>Pesanan anda sudah sukses dicheck out selanjutnya untuk pembayaran silahkan transfer di no rekening berikut :</h5>
+                    <h5>Pesanan anda sudah sukses dicheck out, selanjutnya untuk pembayaran silahkan transfer di no rekening berikut :</h5>
                     <br>
                     @foreach ($bank as $banks)
-                    <h5>{{($banks->nama_bank)}} Nomer Rekening : {{$banks->no_rekening}}
+                    <h5>{{($banks->nama_bank)}} : {{$banks->no_rekening}} a.n. {{$banks->nasabah}}
                     @endforeach
-                    <h5> nominal pembayaran : Rp. {{ number_format($order->kode+$order->jumlah_harga) }}</h5>
+                    <br><br>
+                    <h5> Nominal pembayaran : Rp. {{ number_format($order->kode+$order->jumlah_harga) }}</h5>
                     <br>
                     <h5>Tunjukan bukti pembayaran dan bukti order pada saat mengambil kue !!!</h5>
                 </div>
@@ -72,7 +73,7 @@
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td>
-                                    <img src="{{ $pesanan_detail->produk->foto_produk }}" width="100" alt="...">
+                                    <img src="{{ asset('storage/foto_produk/'.$pesanan_detail->produk->foto_produk) }}" width="100" alt="...">
                                 </td>
                                 <td>{{ $pesanan_detail->produk->nama_produk }}</td>
                                 <td>{{ $pesanan_detail->jumlah }}</td>

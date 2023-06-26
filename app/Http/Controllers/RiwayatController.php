@@ -20,7 +20,7 @@ class RiwayatController extends Controller
     public function index()
     {
     	$order = Order::where('user_id', Auth::user()->id)->where('status', '!=',0)->get();
-    	return view('layouts.user.riwayat', compact('order', 'bank'));
+    	return view('layouts.user.riwayat', compact('order'));
     }
 
     public function detail($id)

@@ -15,6 +15,7 @@ use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RekeningController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +69,17 @@ Route::group(['middleware' => ['auth', 'level:owner']], function () {
 
 	Route::get('/laporan/cetak', [App\Http\Controllers\PesananController::class, 'cetakLaporan'])->name('cetak.laporan');
 	Route::get('/laporan/cetak/{start_date}/{end_date}', [App\Http\Controllers\PesananController::class, 'cetakPertanggal'])->name('laporan.cetak.pertanggal');
+
+	Route::controller(RekeningController::class)->prefix('rekening')->group(function (){
+		Route::get('', 'index')->name('rekening');
+		Route::get('/search/rekening','index')->name('rekening.search');
+		Route::get('tambah', 'create')->name('rekening.create');
+		Route::post('tambah', 'store')->name('rekening.create.store');
+		Route::get('edit/{id}', 'edit')->name('rekening.edit');
+		Route::post('edit/{id}', 'update')->name('rekening.create.update');
+		Route::get('hapus/{id}', 'destroy')->name('rekening.destroy');
+		Route::get('detail/{id}', 'show')->name('rekening.detail');
+	});
 
 	// Route::controller(ProfileController::class)->prefix('profile')->group(function (){
 	// 	Route::get('', 'show')->name('profile.owner');

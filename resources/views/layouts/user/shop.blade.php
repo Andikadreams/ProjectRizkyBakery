@@ -22,28 +22,11 @@
     @endif
 
     <div class="container">
-<<<<<<< HEAD
         <form method="post" action="{{ url('shop') }}" class="mt-3">
             <div class="input-group mb-3 col-12 col-sm-8 col-md-6">
                 @csrf
                 <input type="text" name="cari" class="form-control" required="" placeholder="Masukkan Nama Produk">
                 <button type="submit" class="btn btn-primary ml-2"><i class="bi bi-search"></i>Cari</button>
-=======
-        <!-- <form method="post" action="{{ url('shop') }}" class="mt-3">
-            @csrf
-            <input type="text" name="cari" class="form-control" required="" placeholder="Masukkan Nama Produk">
-            <button type="submit" class="btn btn-primary mt-1"><i class="bi bi-search"></i>Cari</button>
-        </form> -->
-
-        <form class="form-left my-2" method="get" action="{{ route('search') }}">
-        @csrf
-            <div class="input-group mb-3 col-12 col-sm-8">
-                <input type="text" name="cari" class="form-control w-50 d-inline" id="search"
-                    placeholder="Masukkan Nama Produk">
-                <button type="submit" class="btn btn-primary mb-1">Cari</button>
-                <div class="input-group-append">
-                </div>
->>>>>>> cb05433 (Add dan Edit)
             </div>
         </form>
 

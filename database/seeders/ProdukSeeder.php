@@ -179,12 +179,6 @@ class ProdukSeeder extends Seeder
             ],
         ];
 
-        // foreach ($produk as &$data) {
-        //     // Simpan foto_produk dalam direktori storage/app/public/foto_produk
-        //     $fotoProduk = Storage::putFile('public/foto_produk', storage_path('app/public/foto_produk/' . $data['foto_produk']));
-        //     $data['foto_produk'] = 'storage/' . $fotoProduk;
-        // }
-
         DB::table('produk')->insert($produk);
     }
 }

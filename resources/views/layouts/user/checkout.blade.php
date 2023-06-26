@@ -73,6 +73,7 @@
                                 </td>
                             </tr>
                             @endforeach
+                            @if($order->jumlah_harga!=0)
                             <tr>
                                 <td colspan="5" align="right"><strong>Total Harga :</strong></td>
                                 <td align="right"><strong>Rp. {{ number_format($order->jumlah_harga) }}</strong></td>
@@ -82,6 +83,7 @@
                                     </a>
                                 </td>
                             </tr>
+                            @endif
                         </tbody>
                     </table>
                     @endif

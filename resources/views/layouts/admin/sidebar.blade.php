@@ -1,5 +1,5 @@
 @if(Auth::user()->level == 'admin'||Auth::user()->level == 'owner')
-<ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: #212A3E">
 
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard')}}">
@@ -73,6 +73,15 @@
     <a class="nav-link" href="{{ route('laporan.penjualan') }}">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Laporan Penjualan</span></a>
+  </li>
+  @else
+	@endif
+
+  @if(Auth::user()->level == 'owner')
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('rekening') }}">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span>Tambah Rekening</span></a>
   </li>
   @else
 	@endif
