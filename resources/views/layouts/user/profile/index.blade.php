@@ -10,8 +10,8 @@
             <div class="col col-lg-6 mb-4 mb-lg-0">
                 <div class="card mb-3" style="border-radius: .5rem;">
                     <div class="row g-0">
-                        <div class="col-md-4 gradient-custom text-center text-white" 
-                            style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                    <div class="col-md-4 text-center text-white"
+                            style="background-color: #212A3E; border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
                             <img src="{{asset('storage/'.auth()->user()->foto)}}"
                                 alt="Avatar" class="img-fluid my-5" style="width: 100px;object-fit:cover;height:auto;border-radius:50%;overflow:hidden;">
                             <h5>{{ auth()->user()->name }}</h5>
@@ -30,11 +30,11 @@
 
                             @if(Auth::user()->level == 'pelanggan')
                             <a href="{{route ('profile.create.edit.pelanggan',Auth::user()->id)}}">
-                            <i class="far fa-edit mb-5">Edit</i>
+                                <i class="far fa-edit mb-5">Edit</i>
                             </a>
                             <br>
                             <a href="{{route('home')}}">
-                                <button class="btn btn-primary">Back</button>
+                                <button class="btn btn-danger">Back</button>
                             </button>
                             </a>
                             @endif
