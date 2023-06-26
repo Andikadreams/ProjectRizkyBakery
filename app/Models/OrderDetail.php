@@ -28,7 +28,11 @@ class OrderDetail extends Model
 
 	public function order()
 	{
+<<<<<<< HEAD
 	      return $this->belongsTo(Order::class,'order_id', 'id');
+=======
+	      return $this->belongsTo(Order::class,'order_id');
+>>>>>>> 579196f6f8dece10fe94d2af9360c67e13610309
 	}
 
 }

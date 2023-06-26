@@ -29,13 +29,17 @@
             <button type="submit" class="btn btn-primary mt-1"><i class="bi bi-search"></i>Cari</button>
         </form>
         <div class="row justify-content-center">
-            <div class="col-md-12 mb-5">
+            <!-- <div class="col-md-12 mb-5">
                 <img src="{{ url('images/logo.png') }}" class="rounded mx-auto d-block" width="700" alt="">
-            </div>
+            </div> -->
             @foreach ($produk as $produks)
                 <div class="col-md-4">
                     <div class="card mb-5">
+<<<<<<< HEAD
                         <img src="{{ $produks->foto_produk }}" class="card-img-top mb-4 rounded"
+=======
+                    <img src="{{ asset('storage/' .$produks->foto_produk) }}" class="card-img-top mb-"
+>>>>>>> 579196f6f8dece10fe94d2af9360c67e13610309
                             style="height: 300px; object-fit: cover; width: 100%; object-position:bottom" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ $produks->nama_produk }}</h5>

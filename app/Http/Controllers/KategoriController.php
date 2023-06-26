@@ -38,17 +38,17 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = Kategori::where('nama', $request->nama)->first();
-        if($validate){
-            // Alert::error('Gagal Menambah Kategori','Nama Kategori Tidak Boleh Sama!');
-            return redirect()->route('kategori')->with('error','Nama Kategori Tidak Boleh Sama!');
+        $validateKode = Kategori::where('kode_kategori', $request->kode_kategori)->first();
+        $validateNama = Kategori::where('nama', $request->nama)->first();
+    
+        if ($validateKode) {
+            return redirect()->route('kategori')->with('error', 'Kode Kategori Tidak Boleh Sama!');
+        } elseif ($validateNama) {
+            return redirect()->route('kategori')->with('error', 'Nama Kategori Tidak Boleh Sama!');
+        } else {
+            Kategori::create(['nama' => $request->nama,'kode_kategori' => $request->kode_kategori]);
+            return redirect()->route('kategori')->with('success', 'Berhasil Menambah Kategori!');
         }
-        else{
-            Kategori::create(['nama' => $request->nama]);
-            // Alert::success('Berhasil','Berhasil Menambah Kategori!');
-		    return redirect()->route('kategori')->with('success', 'Berhasil Menambah Kategori!');
-        }
-        
     }
 
     /**
@@ -82,11 +82,40 @@ class KategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id, Request $request)
+    public function update(Request $request, $id)
     {
-        Kategori::find($id)->update(['nama' => $request->nama]);
-        // Alert::success('Berhasil','Berhasil Mengganti Kategori!');
-		return redirect()->route('kategori')->with('success','Berhasil Mengubah Kategori!');
+        $kategori = Kategori::find($id);
+        $validateKode = Kategori::where('kode_kategori', $request->kode_Kategori)
+            ->where('id', '!=', $id)
+            ->exists();
+        $validateNama = Kategori::where('nama', $request->nama)
+            ->where('id', '!=', $id)
+            ->exists();
+        $data = [
+			'kode_kategori' => $request->kode_kategori,
+			'nama' => $request->nama,
+		];
+        if ($kategori->kode_kategori == $request->kode_kategori && $kategori->nama == $request->nama) {
+            return redirect()->route('kategori')->with('info', 'Tidak ada perubahan pada data kategori.');
+        }
+    
+        if (!empty($request->kode_kategori) && !empty($request->nama)) {
+            $validateKode = Kategori::where('kode_kategori', $request->kode_kategori)
+                ->where('id', '!=', $id)
+                ->exists();
+            $validateNama = Kategori::where('nama', $request->nama)
+                ->where('id', '!=', $id)
+                ->exists();
+    
+            if ($validateKode) {
+                return redirect()->route('kategori')->with('error', 'Kode Kategori Tidak Boleh Sama!');
+            } else if ($validateNama) {
+                return redirect()->route('kategori')->with('error', 'Nama Kategori Tidak Boleh Sama!');
+            }
+        }
+        
+        Kategori::find($id)->update($data);
+        return redirect()->route('kategori')->with('success', 'Berhasil Mengubah kategori!');
     }
 
     /**
@@ -112,7 +141,9 @@ class KategoriController extends Controller
 
     public function search(Request $request){
         $keyword = $request->search;
-        $kategori = Kategori::where('nama', 'like', "%" . $keyword . "%")->paginate(5);
+        $kategori = Kategori::where('nama', 'like', "%" . $keyword . "%")
+        ->orWhere('kode_kategori', 'like', "%" . $keyword . "%")
+        ->paginate(5);
         return view('layouts.admin.kategori.index', ['kategori' => $kategori])->with('i', (request()->input('page', 1) - 1) * 5);
     }
 }

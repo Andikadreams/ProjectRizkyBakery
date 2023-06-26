@@ -34,7 +34,10 @@ class HomeController extends Controller
 
     public function ownerHome(){
         $count_pelanggan = User::get('level')->where('level','==','pelanggan')->count();
-        return view('dashboard_owner',compact('count_pelanggan'));
+        $count_admin = User::get('level')->where('level','==','admin')->count();
+        $count_owner = User::get('level')->where('level','==','owner')->count();
+        $count_penjualan = OrderDetail::sum('jumlah_harga');
+        return view('dashboard_owner',compact('count_pelanggan','count_admin','count_owner','count_penjualan'));
     }
 
     public function adminHome()

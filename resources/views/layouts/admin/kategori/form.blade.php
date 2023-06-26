@@ -20,6 +20,13 @@
                             value="{{ isset($kategori) ? $kategori->nama : '' }}">
                     </div>
                 </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="kode_kategori">Kode Kategori</label>
+                        <input type="text" required="required" class="form-control" id="kode_kategori" name="kode_kategori"
+                            value="{{ isset($kategori) ? $kategori->kode_kategori : '' }}">
+                    </div>
+                </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Simpan</button>
                     <a href="{{ route('kategori') }}" class="btn btn-danger" role="button" aria-disabled="true" style="margin-left:5px">Kembali</a>

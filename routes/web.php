@@ -62,10 +62,12 @@ Route::group(['middleware' => ['auth', 'level:owner']], function () {
 	});
 
 	Route::controller(PesananController::class)->prefix('laporan')->group(function (){
-		Route::get('', 'laporanPenjualan')->name('laporan.penjualan');
+		Route::get('', 'indexPenjualan')->name('laporan.penjualan');
+		Route::get('/search/penjualan','indexPenjualan')->name('laporan.search.penjualan');
 	});
 
 	Route::get('/laporan/cetak', [App\Http\Controllers\PesananController::class, 'cetakLaporan'])->name('cetak.laporan');
+	Route::get('/laporan/cetak/{start_date}/{end_date}', [App\Http\Controllers\PesananController::class, 'cetakPertanggal'])->name('laporan.cetak.pertanggal');
 
 	// Route::controller(ProfileController::class)->prefix('profile')->group(function (){
 	// 	Route::get('', 'show')->name('profile.owner');
@@ -106,12 +108,12 @@ Route::group(['middleware' => ['auth', 'level:admin']], function () {
 	});
 
 	Route::controller(PesananController::class)->prefix('pesanan')->group(function (){
-		Route::get('', 'pesananMasuk')->name('pesanan');
+		Route::get('', 'index')->name('pesanan');
 		Route::get('detail/{id}','show')->name('pesanan.detail');
-		Route::get('/search','search')->name('pesanan.search');
+		Route::get('/search','index')->name('pesanan.search');
 	});
 
-	Route::controller(ProfileController::class)->prefix('profile')->group(function (){
+	Route::controller(ProfileController::class)->prefix('profile-admin')->group(function (){
 		Route::get('', 'show')->name('profile');
 		Route::get('edit/{id}', 'edit')->name('profile.edit');
 		Route::post('edit/{id}', 'update')->name('profile.create.edit');
@@ -140,6 +142,12 @@ Route::group(['middleware' => ['auth', 'level:pelanggan']], function () {
 	route::get('riwayat/{id}', [RiwayatController::class, 'detail'])->name('riwayat_detail');
 	Route::get('riwayat/{id}/export', [RiwayatController::class, 'exportToPDF'])->name('riwayat.export');
 	Route::post('shop', [ShopController::class, 'search'])->name('search');
+
+	Route::controller(ProfileController::class)->prefix('profile')->group(function (){
+		Route::get('', 'showPelanggan')->name('profile.pelanggan');
+		Route::get('edit/{id}', 'editPelanggan')->name('profile.edit.pelanggan');
+		Route::post('edit/{id}', 'updatePelanggan')->name('profile.create.edit.pelanggan');
+	});
 });
 
 Route::get('auth/google', [LoginWithGoogleController::class, 'redirectToGoogle']);
