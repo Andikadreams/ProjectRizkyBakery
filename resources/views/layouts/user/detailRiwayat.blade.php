@@ -42,10 +42,11 @@
                     <h5>Pesanan anda sudah sukses dicheck out selanjutnya untuk pembayaran silahkan transfer di no rekening berikut :</h5>
                     <br>
                     @foreach ($bank as $banks)
-                    <h5><strong>{{($banks->nama_bank)}} Nomer Rekening : {{$banks->no_rekening}}</strong> dengan nominal : <strong>Rp. {{ number_format($order->kode+$order->jumlah_harga) }}</strong></h5>
+                    <h5>{{($banks->nama_bank)}} Nomer Rekening : {{$banks->no_rekening}}
                     @endforeach
+                    <h5> nominal pembayaran : Rp. {{ number_format($order->kode+$order->jumlah_harga) }}</h5>
                     <br>
-                    <h5>Tunjukan bukti pembayaran pada saat mengambil kue !!!</h5>
+                    <h5>Tunjukan bukti pembayaran dan bukti order pada saat mengambil kue !!!</h5>
                 </div>
             </div>
             <div class="card mt-2">
@@ -99,7 +100,7 @@
                     </table>
                     @endif
                 </div>
-                <a type="button" class="btn btn-outline-success d-flex justify-content-center" href="{{ route('riwayat.export', ['id' => $order->id]) }}">Export to PDF</a>
+                <a type="button" class="btn btn-outline-success d-flex justify-content-center" href="{{ route('riwayat.export', ['id' => $order->id]) }}">Cetak Bukti Order</a>
             </div>
         </div>
         

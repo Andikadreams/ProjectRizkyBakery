@@ -20,18 +20,17 @@ class RiwayatController extends Controller
     public function index()
     {
     	$order = Order::where('user_id', Auth::user()->id)->where('status', '!=',0)->get();
-        $bank = Bank::get();
-
     	return view('layouts.user.riwayat', compact('order', 'bank'));
     }
 
     public function detail($id)
     {
         $produk = Produk::get();
+        $bank = Bank::get();
     	$order = Order::where('id', $id)->first();
     	$order_details = OrderDetail::where('order_id', $order->id)->get();
 
-     	return view('layouts.user.detailRiwayat', compact('order','order_details','produk'));
+     	return view('layouts.user.detailRiwayat', compact('order','bank', 'order_details','produk'));
     }
 
     

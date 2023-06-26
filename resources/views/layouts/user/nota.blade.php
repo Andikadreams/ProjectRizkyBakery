@@ -3,18 +3,38 @@
 
 <head>
     <title>NOTA </title>
+
+    <style>
+        /* Gaya untuk tabel */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        /* Gaya untuk gambar */
+        img {
+            max-width: 100px;
+            height: auto;
+        }
+        
+        /* Gaya untuk teks yang dicetak tebal */
+        strong {
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
-    <style type="text/css">
-        table tr td,
-        table tr th {
-            font-size: 9pt;
-        }
-    </style>
-    <center>
-        <h5>Laporan Artikel</h4>
-    </center>
     <table class='table table-bordered'>
         <thead>
             <tr>
