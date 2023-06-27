@@ -67,7 +67,7 @@
                     <tr>
                         <td>{{ $row->kode_produk }}</td>
                         <td>{{ $row->nama_produk }}</td>
-                        <td><img width="130px" src="{{asset('storage/foto_produk/'.$row->foto_produk)}}"></td>
+                        <td><img width="130px" src="{{asset('storage/'.$row->foto_produk)}}"></td>
                         <td>{{ $row->kategori->nama }}</td>
                         <td>{{ $row->harga }}</td>
                         <td>{{ $row->jumlah }}</td>
