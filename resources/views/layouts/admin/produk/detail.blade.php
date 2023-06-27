@@ -13,7 +13,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><b>Kode Produk: </b>{{$produk->kode_produk}}</li>
                     <li class="list-group-item"><b>Nama Produk: </b>{{$produk->nama_produk}}</li>
-                    <li class="list-group-item"><b>Foto Prooduk: <br></b><img width="100px" src="{{asset('storage/'.$produk->foto_produk)}}"></li>
+                    <li class="list-group-item"><b>Foto Prooduk: <br></b><img width="100px" src="{{asset('storage/foto_produk/'.$produk->foto_produk)}}"></li>
                     <li class="list-group-item"><b>Kategori: </b>{{$produk->Kategori->nama}}</li>
                     <li class="list-group-item"><b>Harga: </b>{{$produk->harga}}</li>
                     <li class="list-group-item"><b>Jumlah: </b>{{$produk->jumlah}}</li>
