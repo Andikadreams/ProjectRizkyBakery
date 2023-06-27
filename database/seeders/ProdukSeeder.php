@@ -151,7 +151,7 @@ class ProdukSeeder extends Seeder
                 'foto_produk' => 'Smoothies.jpg',
                 'harga' => 30000,
                 'jumlah' => 15,
-                'id_kategori' => '6',
+                'id_kategori' => '5',
             ],
             [
                 'kode_produk' => 'M0602',
@@ -159,7 +159,7 @@ class ProdukSeeder extends Seeder
                 'foto_produk' => 'Soda.jpg',
                 'harga' => 15000,
                 'jumlah' => 20,
-                'id_kategori' => '6',
+                'id_kategori' => '5',
             ],
             [
                 'kode_produk' => 'M0603',
@@ -167,7 +167,7 @@ class ProdukSeeder extends Seeder
                 'foto_produk' => 'Juice.jpg',
                 'harga' => 15000,
                 'jumlah' => 10,
-                'id_kategori' => '6',
+                'id_kategori' => '5',
             ],
             [
                 'kode_produk' => 'M0604',
@@ -175,7 +175,7 @@ class ProdukSeeder extends Seeder
                 'foto_produk' => 'Milkshake.jpg',
                 'harga' => 30000,
                 'jumlah' => 20,
-                'id_kategori' => '6',
+                'id_kategori' => '5',
             ],
         ];
 
