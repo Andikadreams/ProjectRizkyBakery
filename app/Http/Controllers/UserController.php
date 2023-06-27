@@ -62,7 +62,7 @@ class UserController extends Controller
 		];
 
         User::create($data);
-		return redirect()->route('user');
+		return redirect()->route('user')->with('success', 'Berhasil Menambah Data User');
     }
 
     /**
@@ -123,12 +123,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $userCount = User::where('level', '=', 'owner')->count();
+        $userCount = User::where('level', '==', 'owner')->count();
         if ($userCount == 1) {
             return redirect()->route('user')->with('error','Gagal, Akun Owner Tersisa 1!!!');
         }
         User::find($id)->delete();
-		return redirect()->route('user');
+		return redirect()->route('user')->with('success','Berhasil, Menghapus Akun!!');
     }
 
     public function search(Request $request){
