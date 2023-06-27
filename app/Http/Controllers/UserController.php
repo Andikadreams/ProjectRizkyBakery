@@ -133,7 +133,9 @@ class UserController extends Controller
 
     public function search(Request $request){
         $keyword = $request->search;
-        $user = User::where('name', 'like', "%" . $keyword . "%")->paginate(5);
+        $user = User::where('name', 'like', "%" . $keyword . "%")
+        ->orWhere('level', 'like', "%" . $keyword . "%")
+        ->orWhere('email', 'like', "%" . $keyword . "%")->paginate(5);
         return view('layouts.admin.userManage.index', ['data' => $user])->with('i', (request()->input('page', 1) - 1) * 5);
     }
     
