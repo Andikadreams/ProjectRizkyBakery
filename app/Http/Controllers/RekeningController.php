@@ -25,8 +25,7 @@ class RekeningController extends Controller
      */
     public function create()
     {
-        $bank = Bank::get();
-		return view('layouts.admin.rekening.form', ['bank' => $bank]);
+		return view('layouts.admin.rekening.form');
     }
 
     /**
@@ -37,16 +36,11 @@ class RekeningController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
-            'nasabah' => $request->nasabah,
-            'nama_bank' => $request->nama_bank,
-            'no_rekening' => $request->no_rekening,
-		];
         $validateKode = Bank::where('no_rekening', $request->no_rekening)->first();
         if ($validateKode) {
             return redirect()->route('rekening')->with('error', 'No. Rekening Tidak Boleh Sama!');
         } else {
-            Bank::create($data);
+            Bank::create(['nasabah' => $request->nasabah,'nama_bank' => $request->nama_bank,'no_rekening' => $request->no_rekening]);
             return redirect()->route('rekening')->with('success', 'Berhasil Menambah Data Rekening!');
         }
     }
@@ -72,7 +66,7 @@ class RekeningController extends Controller
     public function edit($id)
     {
         $bank = Bank::find($id);
-		return view('layouts.admin.rekening.form', ['bank' => $bank]);
+		return view('layouts.admin.rekening.edit', ['bank' => $bank]);
     }
 
     /**
@@ -123,6 +117,6 @@ class RekeningController extends Controller
             ->orWhere('no_rekening', 'like', "%" . $keyword . "%")
             ->orWhere('nama_bank', 'like', "%" . $keyword . "%")
             ->paginate(5);
-        return view('layouts.admin.rekening.index', ['data' => $bank])->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('layouts.admin.rekening.index', ['bank' => $bank])->with('i', (request()->input('page', 1) - 1) * 5);
     }
 }

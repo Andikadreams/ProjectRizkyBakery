@@ -35,8 +35,8 @@
         <h6 class="m-0 font-weight-bold text-primary">Data Rekening</h6>
     </div>
     <div class="card-body">
-        <a href="{{ route('kategori.create') }}" class="btn btn-primary mb-3 ml-3">Tambah Rekening</a>
-        <a class="btn btn-success right mb-3" href="{{ route('kategori') }}">Semua Rekening</a>
+        <a href="{{ route('rekening.create') }}" class="btn btn-primary mb-3 ml-3">Tambah Rekening</a>
+        <a class="btn btn-success right mb-3" href="{{ route('rekening') }}">Semua Rekening</a>
         <div class="table-responsive">
             <form class="form-left my-2" method="get" action="{{ route('rekening.search') }}">
                 <div class="input-group mb-3 col-12 col-sm-8 col-md-6">

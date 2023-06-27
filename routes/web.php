@@ -72,7 +72,7 @@ Route::group(['middleware' => ['auth', 'level:owner']], function () {
 
 	Route::controller(RekeningController::class)->prefix('rekening')->group(function (){
 		Route::get('', 'index')->name('rekening');
-		Route::get('/search/rekening','index')->name('rekening.search');
+		Route::get('/search/rekening','search')->name('rekening.search');
 		Route::get('tambah', 'create')->name('rekening.create');
 		Route::post('tambah', 'store')->name('rekening.create.store');
 		Route::get('edit/{id}', 'edit')->name('rekening.edit');

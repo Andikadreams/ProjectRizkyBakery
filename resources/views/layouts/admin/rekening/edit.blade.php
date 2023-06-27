@@ -3,15 +3,15 @@
 @section('title', 'Form Rekening')
 
 @section('contents')
-<form action="{{ route('rekening.create.store') }}"
-    method="post">
+<form action="{{ route('rekening.edit', $bank->id) }}"
+    method="post" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">
-                        {{ isset($bank) ? 'Form Edit Rekening' : 'Form Tambah Rekening' }}</h6>
+                        Form Edit Rekening</h6>
                 </div>
                 <div class="card-body">
                     <div class="form-group">
